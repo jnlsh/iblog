@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 定义变量 -->
+	<property name="pattern" value="%date{yyyy-MM-dd HH:mm:ss} %-5level %logger{0} %n%msg%n" />
+
+	<!-- 打印到控制台 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<root level="error">
+		<appender-ref ref="stdout"/>
+	</root>
+</configuration>

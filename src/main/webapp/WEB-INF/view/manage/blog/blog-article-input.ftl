@@ -1,0 +1,18 @@
+<#include "/WEB-INF/view/inc/inc.ftl"/>
+
+<@ueditor init=false>ue = UE.getEditor('ueditor',{zIndex:1100});</@ueditor>
+<form class="form-horizontal" role="form">
+	<input type="hidden" name="row.id" value="${(row.id)!}"/>
+	<@bsinput title='文章类型' input=false>
+		<select class="form-control" name='row.blog_type_id'>
+			<#list blogTypes as item>
+				<option value="${item.id}" <#if row?? && row.blog_type_id == item.id>selected</#if>>${item.blog_type_name}</option>
+			</#list>
+		</select>
+	</@bsinput>
+	<@bsinput title='文章编码' name='row.blog_article_code' value='${(row.blog_article_code)!}'/>
+	<@bsinput title='文章标题' name='row.blog_article_title' value='${(row.blog_article_title)!}'/>
+	<@bsinput title='文章内容' input=false>
+		<script id="ueditor" name="row.blog_article_content" type="text/plain">${(row.blog_article_content)!}</script>
+	</@bsinput>
+</form>

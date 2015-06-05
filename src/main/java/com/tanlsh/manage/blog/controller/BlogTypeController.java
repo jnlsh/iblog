@@ -3,7 +3,7 @@ package com.tanlsh.manage.blog.controller;
 import com.tanlsh.manage.blog.model.BlogArticleModel;
 import com.tanlsh.manage.blog.model.BlogTypeModel;
 import com.tanlsh.util.core.annotation.ControllerUrl;
-import com.tanlsh.util.function.QCacheUtil;
+import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.plugin.json.QJson;
 import com.tanlsh.util.plugin.json.QJsonUtil;
@@ -40,7 +40,7 @@ public class BlogTypeController extends BaseController{
 		if(validate == null){
 			QJson json = save(BlogTypeModel.class);
 			if(QJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
-				QCacheUtil.putToEHCache("blogTypes", BlogTypeModel.dao.findAll("order by blog_type_name"));
+				CacheUtil.putToEHCache("blogTypes", BlogTypeModel.dao.findAll("order by blog_type_name"));
 			}
 			
 			renderJson(json);
@@ -55,7 +55,7 @@ public class BlogTypeController extends BaseController{
 	public void del(){
 		QJson json = del(BlogTypeModel.class, BlogArticleModel.class, "blog_type_id");
 		if(QJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
-			QCacheUtil.putToEHCache("blogTypes", BlogTypeModel.dao.findAll("order by blog_type_name"));
+			CacheUtil.putToEHCache("blogTypes", BlogTypeModel.dao.findAll("order by blog_type_name"));
 		}
 		
 		renderJson(json);

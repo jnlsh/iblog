@@ -12,7 +12,7 @@ import com.tanlsh.util.core.file.QDocumentUtil;
 import com.tanlsh.util.core.file.QPropertiesUtil;
 import com.tanlsh.util.core.http.QCookieUtil;
 import com.tanlsh.util.core.http.QRequestUtil;
-import com.tanlsh.util.function.QCacheUtil;
+import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 
 /**
@@ -54,7 +54,7 @@ public class QInterceptor implements Interceptor{
 	private void initUser(Controller controller){
 		String cookieUserId = QCookieUtil.getValue(controller.getRequest(), "uikoo9userid");
 		if(QStringUtil.notEmpty(cookieUserId)){
-			Object valueObject = QCacheUtil.getFromEHCache(cookieUserId);
+			Object valueObject = CacheUtil.getFromEHCache(cookieUserId);
 			if(valueObject != null){
 				controller.setAttr("user", (UcenterUserModel) valueObject);
 			}
@@ -68,10 +68,10 @@ public class QInterceptor implements Interceptor{
 	private void initDevMode(Controller controller) {
 		Boolean devMode = false;
 		
-		Object devModeObject = QCacheUtil.getFromEHCache("devMode");
+		Object devModeObject = CacheUtil.getFromEHCache("devMode");
 		if(devModeObject == null){
 			devMode = QPropertiesUtil.getBoolean("jfinal.dev_mode");
-			QCacheUtil.putToEHCache("devMode", devMode);
+			CacheUtil.putToEHCache("devMode", devMode);
 		}else{
 			devMode = (Boolean) devModeObject;
 		}
@@ -86,14 +86,14 @@ public class QInterceptor implements Interceptor{
 	private void initBasePath(Controller controller){
 		String base = null;
 
-		Object baseObject = QCacheUtil.getFromEHCache("base");
+		Object baseObject = CacheUtil.getFromEHCache("base");
 		if(baseObject == null){
 			if(QPropertiesUtil.getBoolean("jfinal.dev_mode")){
 				base = QRequestUtil.getHttpPath(controller.getRequest());
 			}else{
 				base = "";
 			}
-			QCacheUtil.putToEHCache("base", base);
+			CacheUtil.putToEHCache("base", base);
 		}else{
 			base = (String) baseObject;
 		}
@@ -133,10 +133,10 @@ public class QInterceptor implements Interceptor{
 		List<String> paths = new ArrayList<String>();
 		
 		try {
-			Object pathsObject = QCacheUtil.getFromEHCache("paths");
+			Object pathsObject = CacheUtil.getFromEHCache("paths");
 			if(pathsObject == null){
 				paths = QDocumentUtil.getTagValue("jfinal-auth.xml", "url");
-				QCacheUtil.putToEHCache("paths", paths);
+				CacheUtil.putToEHCache("paths", paths);
 			}else{
 				paths = (List<String>) pathsObject;
 			}
@@ -181,7 +181,7 @@ public class QInterceptor implements Interceptor{
 	@SuppressWarnings("unchecked")
 	private Map<String, String> getAuths(){
 		Map<String, String> urls = null;
-		Object urlsObject = QCacheUtil.getFromEHCache("auths");
+		Object urlsObject = CacheUtil.getFromEHCache("auths");
 		if(urlsObject == null){
 			urls = QJfinalUtil.initAuths();
 		}else{

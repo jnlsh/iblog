@@ -2,7 +2,7 @@ package com.tanlsh.util.jfinal.ucenter.controller;
 
 import com.jfinal.plugin.activerecord.Record;
 import com.tanlsh.util.core.file.QPropertiesUtil;
-import com.tanlsh.util.function.QEncodeUtil;
+import com.tanlsh.util.function.EncodeUtil;
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 import com.tanlsh.util.plugin.contants.QContants;
@@ -59,7 +59,7 @@ public class UcenterUserController extends BaseController{
 	public Record initRecord(Record record){
 		String pwd = record.getStr("ucenter_user_key");
 		try {
-			record.set("ucenter_user_key", QEncodeUtil.md5Encrypt(pwd));
+			record.set("ucenter_user_key", EncodeUtil.md5Encrypt(pwd));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

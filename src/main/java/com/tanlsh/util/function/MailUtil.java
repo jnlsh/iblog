@@ -27,7 +27,7 @@ import com.tanlsh.util.core.file.QPropertiesUtil;
  * 	0.0.2.20141105
  * 	0.0.1.20141104
  */
-public class QMailUtil {
+public class MailUtil {
 	
 	/**
 	 * 发送邮件，通用
@@ -38,7 +38,7 @@ public class QMailUtil {
 	public static boolean sendMail(String from, String to, String title, String content, boolean isHtml){
 		final Message mailMessage = generateMailMessage(from, to, title, content, isHtml);
 		if(mailMessage != null){
-			QThreadUtil.runCached(new Runnable() {
+			ThreadUtil.runCached(new Runnable() {
 				public void run() {
 					try {
 						Transport.send(mailMessage);

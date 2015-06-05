@@ -3,7 +3,7 @@ package com.tanlsh.util.jfinal.ucenter.controller;
 import java.util.List;
 
 import com.tanlsh.util.core.data.QArrayUtil;
-import com.tanlsh.util.function.QCacheUtil;
+import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterMenuModel;
 import com.tanlsh.util.plugin.contants.QContants;
@@ -59,7 +59,7 @@ public class UcenterMenuController extends BaseController{
 		if(validate == null){
 			QJson json = save(UcenterMenuModel.class);
 			if(QJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
-				QCacheUtil.putToEHCache("menus", UcenterMenuModel.dao.findAllByCache());
+				CacheUtil.putToEHCache("menus", UcenterMenuModel.dao.findAllByCache());
 			}
 			
 			renderJson(json);
@@ -74,7 +74,7 @@ public class UcenterMenuController extends BaseController{
 	public void del(){
 		try {
 			delChildren(getParaToInt());
-			QCacheUtil.putToEHCache("menus", UcenterMenuModel.dao.findAllByCache());
+			CacheUtil.putToEHCache("menus", UcenterMenuModel.dao.findAllByCache());
 			renderJson(QJsonUtil.suc("删除成功！"));
 		} catch (Exception e) {
 			e.printStackTrace();

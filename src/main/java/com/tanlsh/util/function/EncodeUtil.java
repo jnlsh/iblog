@@ -34,7 +34,7 @@ import sun.misc.BASE64Encoder;
  * @author qiaowenbin
  * @version 0.0.9.20140610
  */
-public class QEncodeUtil {
+public class EncodeUtil {
 	
 	/**
 	 * 将byte[]转为各种进制的字符串

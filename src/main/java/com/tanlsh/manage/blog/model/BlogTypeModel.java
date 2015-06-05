@@ -5,7 +5,7 @@ import java.util.List;
 import com.jfinal.plugin.activerecord.Model;
 import com.tanlsh.util.core.annotation.QTable;
 import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.function.QCacheUtil;
+import com.tanlsh.util.function.CacheUtil;
 
 /**
  * BlogTypeModel
@@ -53,10 +53,10 @@ public class BlogTypeModel extends Model<BlogTypeModel>{
 	public List<BlogTypeModel> findAllByCache(){
 		List<BlogTypeModel> blogTypes = null;
 		
-		Object value = QCacheUtil.getFromEHCache("blogTypes");
+		Object value = CacheUtil.getFromEHCache("blogTypes");
 		if(value == null){
 			blogTypes = BlogTypeModel.dao.findAll("order by blog_type_name");
-			QCacheUtil.putToEHCache("blogTypes", blogTypes);
+			CacheUtil.putToEHCache("blogTypes", blogTypes);
 		}else{
 			blogTypes = (List<BlogTypeModel>) value;
 		}

@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
  * @history
  * 	0.0.1.20141105
  */
-public class QThreadUtil {
+public class ThreadUtil {
 	
 	/**
 	 * 单线程池执行线程

@@ -17,7 +17,7 @@ import com.tanlsh.util.core.data.QArrayUtil;
 import com.tanlsh.util.core.data.QStringUtil;
 import com.tanlsh.util.core.file.QPropertiesUtil;
 import com.tanlsh.util.external.QFreemarkerUtil;
-import com.tanlsh.util.function.QDbUtil;
+import com.tanlsh.util.function.DbUtil;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 import com.tanlsh.util.plugin.crud.QColumnInfo;
 import com.tanlsh.util.plugin.crud.QPage;
@@ -171,7 +171,7 @@ public class BaseController extends Controller{
 		}
 	}
 	private String requireAndUniqueValidate(String tableName) throws SQLException, Exception{
-		Map<String, QColumnInfo> columnMap = QDbUtil.getColumnInfoMap(DbKit.getConfig().getConnection(), tableName);
+		Map<String, QColumnInfo> columnMap = DbUtil.getColumnInfoMap(DbKit.getConfig().getConnection(), tableName);
 		Map<String, String[]> paras = getParaMap();
 		
 		// not null

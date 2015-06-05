@@ -17,8 +17,8 @@ import com.tanlsh.util.core.annotation.QTable;
 import com.tanlsh.util.core.data.QStringUtil;
 import com.tanlsh.util.core.file.QFileUtil;
 import com.tanlsh.util.core.file.QPropertiesUtil;
-import com.tanlsh.util.function.QCacheUtil;
-import com.tanlsh.util.function.QDbUtil;
+import com.tanlsh.util.function.CacheUtil;
+import com.tanlsh.util.function.DbUtil;
 import com.tanlsh.util.jfinal.ucenter.controller.UcenterLoginController;
 import com.tanlsh.util.jfinal.ucenter.controller.UcenterMenuController;
 import com.tanlsh.util.jfinal.ucenter.controller.UcenterRoleController;
@@ -56,7 +56,7 @@ public class QJfinalUtil {
 		try {
 			Connection con = null;
 			try{
-				con = QDbUtil.getCon(QPropertiesUtil.config);
+				con = DbUtil.getCon(QPropertiesUtil.config);
 				
 				QFileUtil.getAllFiles(QFileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes");
 				for(String s : QFileUtil.fileList){
@@ -73,7 +73,7 @@ public class QJfinalUtil {
 				
 				initPackageArp(arp);
 			}finally{
-				QDbUtil.closeCon(con);
+				DbUtil.closeCon(con);
 			}
 			
 			QFileUtil.fileList.clear();
@@ -153,7 +153,7 @@ public class QJfinalUtil {
 			
 			auths.put("user-" + user.getStr("ucenter_user_name"), user.role().urls());
 		}
-		QCacheUtil.putToEHCache("auths", auths);
+		CacheUtil.putToEHCache("auths", auths);
 
 		return auths;
 	}

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 
 import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.function.QEncodeUtil;
+import com.tanlsh.util.function.EncodeUtil;
 
 /**
  * 微信工具类
@@ -50,7 +50,7 @@ public class QWeixinUtil {
 				sb.append(s);
 			}
 			
-			String pwd = QEncodeUtil.sha1(sb.toString());
+			String pwd = EncodeUtil.sha1(sb.toString());
 			if(signature.equals(pwd)) return echostr;
 		}
 		

@@ -5,7 +5,7 @@ import java.util.List;
 import com.jfinal.plugin.activerecord.Model;
 import com.tanlsh.util.core.annotation.QTable;
 import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.function.QCacheUtil;
+import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.plugin.contants.QContants;
 
 /**
@@ -48,11 +48,11 @@ public class UcenterMenuModel extends Model<UcenterMenuModel>{
 	public List<UcenterMenuModel> findAllByCache(){
 		List<UcenterMenuModel> menus = null;
 		
-		Object menusObject = QCacheUtil.getFromEHCache("menus");
+		Object menusObject = CacheUtil.getFromEHCache("menus");
 		if(menusObject == null){
 			String sql = "select * from t_ucenter_menu where ucenter_menu_parent_id=0 and ucenter_menu_type=? order by ucenter_menu_sn";
 			menus = dao.find(sql, QContants.YESNO_YES);
-			QCacheUtil.putToEHCache("menus", menus);
+			CacheUtil.putToEHCache("menus", menus);
 		}else{
 			menus = (List<UcenterMenuModel>) menusObject;
 		}

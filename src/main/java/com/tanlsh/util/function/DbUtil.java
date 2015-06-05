@@ -40,7 +40,7 @@ import com.tanlsh.util.plugin.crud.QPage;
  * 	0.0.4.20141009<br> 
  * 	0.0.3.20140522<br>
  */
-public class QDbUtil {
+public class DbUtil {
 	
 	/**
 	 * get con by path
@@ -159,7 +159,7 @@ public class QDbUtil {
 		try {
 			try{
 				if(QStringUtil.notEmpty(dbPath) && QStringUtil.notEmpty(tableName)){
-					con = QDbUtil.getCon(dbPath);
+					con = DbUtil.getCon(dbPath);
 					
 					String cname = QStringUtil.getClassNameFromTableName(tableName);
 					info.put("pname", tableName.split("_")[1]);
@@ -168,11 +168,11 @@ public class QDbUtil {
 					info.put("url", tableName.replace("_", "/").substring(1));
 					info.put("ftl", tableName.replace("_", "-").substring(2));
 					info.put("tablename", tableName);
-					info.put("pkname", QDbUtil.getPkName(con, tableName));
-					info.put("cols", QDbUtil.getCols(con, tableName));
+					info.put("pkname", DbUtil.getPkName(con, tableName));
+					info.put("cols", DbUtil.getCols(con, tableName));
 				}
 			}finally{
-				QDbUtil.closeCon(con);
+				DbUtil.closeCon(con);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

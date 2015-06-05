@@ -18,7 +18,7 @@ import net.sf.ehcache.Element;
  * @history
  * 	0.0.1.20141109
  */
-public class QCacheUtil {
+public class CacheUtil {
 	
 	private static final CacheManager ehCacheManager = CacheManager.create();
 	private static final Cache ehCache = getEHCache("cache");

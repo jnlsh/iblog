@@ -4,7 +4,7 @@ package com.tanlsh.util.plugin.contants;
  * 常量
  * @author uikoo9
  */
-public class QContants {
+public class Contants {
 	
 	// 是，否
 	public static final String YESNO_YES		= "000101";

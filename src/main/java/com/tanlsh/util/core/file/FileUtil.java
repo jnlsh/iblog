@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * 文件工具类<br>
@@ -33,7 +33,7 @@ import com.tanlsh.util.core.data.QStringUtil;
  * 	0.0.5.20141109<br>
  * 	0.0.4.20140803<br>
  */
-public class QFileUtil {
+public class FileUtil {
 	
 	/**
 	 * jar包得到自身的路径
@@ -43,7 +43,7 @@ public class QFileUtil {
 		String res = null;
 		
 		try {
-			res = URLDecoder.decode(QPropertiesUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile(), "UTF-8");
+			res = URLDecoder.decode(PropertiesUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile(), "UTF-8");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,7 +80,7 @@ public class QFileUtil {
 	 * @return 临时文件的绝对路径
 	 */
 	public static String createFileToTmp(String tmpFileName, String tmpFileExt, InputStream in){
-		if(QStringUtil.allNotEmpty(new String[]{tmpFileName,tmpFileExt}) && in != null){
+		if(StringUtil.allNotEmpty(new String[]{tmpFileName,tmpFileExt}) && in != null){
 			try {
 				File tmpFile = File.createTempFile(tmpFileName, tmpFileExt);
 				FileOutputStream fout = new FileOutputStream(tmpFile);
@@ -158,12 +158,12 @@ public class QFileUtil {
 	 * @param fileName
 	 */
 	public static void copyFileFormJar(String sourcePath, String destPath, String fileName){
-		if(QStringUtil.allNotEmpty(sourcePath, destPath, fileName)){
-			InputStream sourceInputStream = QFileUtil.class.getResourceAsStream(sourcePath + fileName);
+		if(StringUtil.allNotEmpty(sourcePath, destPath, fileName)){
+			InputStream sourceInputStream = FileUtil.class.getResourceAsStream(sourcePath + fileName);
 			File targetFile = new File(destPath + File.separator + fileName);
 			if(targetFile.exists()) targetFile.delete();
 			
-			QFileUtil.createFileByInputStream(sourceInputStream, targetFile);
+			FileUtil.createFileByInputStream(sourceInputStream, targetFile);
 		}
 	}
 	
@@ -173,7 +173,7 @@ public class QFileUtil {
 	 * @return null或文件名的后缀
 	 */
 	public static String getFileExt(String fileName){
-		if(QStringUtil.isEmpty(fileName)) return null;
+		if(StringUtil.isEmpty(fileName)) return null;
 		
 		int dot = fileName.lastIndexOf('.');   
 		if(dot == -1 || dot + 1 == fileName.length()) return null;
@@ -188,7 +188,7 @@ public class QFileUtil {
 	 * @return
 	 */
 	public static String changeFileExt(String fileName, String ext){
-		if(QStringUtil.isEmpty(fileName)) return null;
+		if(StringUtil.isEmpty(fileName)) return null;
 		
 		int dot = fileName.lastIndexOf('.');   
 		if(dot == -1 || dot + 1 == fileName.length()) return null;

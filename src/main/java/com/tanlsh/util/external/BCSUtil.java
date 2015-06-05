@@ -20,7 +20,7 @@ import com.baidu.inf.iis.bcs.request.ListBucketRequest;
 import com.baidu.inf.iis.bcs.request.ListObjectRequest;
 import com.baidu.inf.iis.bcs.request.PutObjectRequest;
 import com.baidu.inf.iis.bcs.response.BaiduBCSResponse;
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 
 /**
  * 百度云存储工具类<br>
@@ -39,16 +39,16 @@ import com.tanlsh.util.core.file.QPropertiesUtil;
  * @history
  * 	0.0.1.20141201<br>
  */
-public class QBCSUtil {
+public class BCSUtil {
 	
 	/**
 	 * 初始化baiduBCS
 	 */
 	private static BaiduBCS baiduBCS = null;
 	static{
-		String accessKey = QPropertiesUtil.config.getProperty("bcs.ak");
-		String secretKey = QPropertiesUtil.config.getProperty("bcs.sk");
-		String host = QPropertiesUtil.config.getProperty("bcs.host");
+		String accessKey = PropertiesUtil.config.getProperty("bcs.ak");
+		String secretKey = PropertiesUtil.config.getProperty("bcs.sk");
+		String host = PropertiesUtil.config.getProperty("bcs.host");
 		baiduBCS = new BaiduBCS(new BCSCredentials(accessKey, secretKey), host);
 		baiduBCS.setDefaultEncoding("UTF-8");
 	}

@@ -5,7 +5,7 @@ package com.tanlsh.util.plugin.crud;
  * @author qiaowenbin
  * @version 0.0.1.20141009
  */
-public class QColumnInfo {
+public class ColumnInfo {
 	private String columnName;
 	private String remarks;
 	private String dbType;

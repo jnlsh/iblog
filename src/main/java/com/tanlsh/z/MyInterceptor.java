@@ -3,8 +3,8 @@ package com.tanlsh.z;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.core.ActionInvocation;
 import com.jfinal.core.Controller;
-import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.core.data.StringUtil;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * 自定义拦截器，区别于jar中的QInterceptor
@@ -18,7 +18,7 @@ public class MyInterceptor implements Interceptor{
 		if(res == null){
 			ai.invoke();
 		}else{
-			ai.getController().renderJson(QJsonUtil.error(res + "，体验所有功能请下载源码！"));
+			ai.getController().renderJson(MyJsonUtil.error(res + "，体验所有功能请下载源码！"));
 		}
 	}
 	

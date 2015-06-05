@@ -3,10 +3,10 @@ package com.tanlsh.manage.blog.controller;
 import com.jfinal.plugin.activerecord.Record;
 import com.tanlsh.manage.blog.model.BlogCommentModel;
 import com.tanlsh.util.core.annotation.ControllerUrl;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * BlogCommentController
@@ -47,14 +47,14 @@ public class BlogCommentController extends BaseController{
 			
 			renderJson(save(BlogCommentModel.class));
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	
 	@Override
 	public Record initRecord(Record record) {
 		removeAttr("user");
-		if(QStringUtil.isEmpty(record.getStr("blog_comment_parent_id"))){
+		if(StringUtil.isEmpty(record.getStr("blog_comment_parent_id"))){
 			record.set("blog_comment_parent_id", 0);
 		}
 		

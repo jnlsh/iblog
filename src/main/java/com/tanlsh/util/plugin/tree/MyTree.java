@@ -5,23 +5,23 @@ import java.util.List;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * tree
  * @author qiaowenbin
  */
-public class QTree {
+public class MyTree {
 	private int id;
 	private String url;
 	private String text;
 	private boolean checked = false;
-	private List<QTree> children;
+	private List<MyTree> children;
 
-	public QTree() {
+	public MyTree() {
 		super();
 	}
-	public QTree(int id, String url, String text, String tableName, QTreeCheck check) {
+	public MyTree(int id, String url, String text, String tableName, MyTreeCheck check) {
 		super();
 		this.id = id;
 		this.url = url;
@@ -29,13 +29,13 @@ public class QTree {
 		if(check != null) this.checked = check.isCheck(id);	
 		this.children = findChildrenByTableAndCheck(id, tableName, check);
 	}
-	private List<QTree> findChildrenByTableAndCheck(int id, String tableName, QTreeCheck check){
-		List<QTree> list = new ArrayList<QTree>();
+	private List<MyTree> findChildrenByTableAndCheck(int id, String tableName, MyTreeCheck check){
+		List<MyTree> list = new ArrayList<MyTree>();
 		
-		if(QStringUtil.isEmpty(tableName)) tableName = "t_ucenter_menu";
+		if(StringUtil.isEmpty(tableName)) tableName = "t_ucenter_menu";
 		List<Record> menus = Db.find("select * from " + tableName + " where ucenter_menu_parent_id=? order by ucenter_menu_sn", id);
 		for(Record menu : menus){
-			list.add(new QTree(menu.getInt("id"), menu.getStr("ucenter_menu_url"), menu.getStr("ucenter_menu_title"), tableName, check));
+			list.add(new MyTree(menu.getInt("id"), menu.getStr("ucenter_menu_url"), menu.getStr("ucenter_menu_title"), tableName, check));
 		}
 		
 		return list;
@@ -65,10 +65,10 @@ public class QTree {
 	public void setChecked(boolean checked) {
 		this.checked = checked;
 	}
-	public List<QTree> getChildren() {
+	public List<MyTree> getChildren() {
 		return children;
 	}
-	public void setChildren(List<QTree> children) {
+	public void setChildren(List<MyTree> children) {
 		this.children = children;
 	}
 }

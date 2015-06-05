@@ -3,8 +3,8 @@ package com.tanlsh.util.jfinal.ucenter.model;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.tanlsh.util.core.annotation.QTable;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.annotation.Table;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * UcenterRoleRUserModel<br>
@@ -17,7 +17,7 @@ import com.tanlsh.util.core.data.QStringUtil;
  * cuser_name	创建人姓名<br>
  * @author qiaowenbin
  */
-@QTable("t_ucenter_role_r_user")
+@Table("t_ucenter_role_r_user")
 @SuppressWarnings("serial")
 public class UcenterRoleRUserModel extends Model<UcenterRoleRUserModel>{
 	
@@ -38,7 +38,7 @@ public class UcenterRoleRUserModel extends Model<UcenterRoleRUserModel>{
 	 */
 	public List<UcenterRoleRUserModel> findAll(String order){
 		StringBuilder sb = new StringBuilder("select * from t_ucenter_role_r_user ");
-		if(QStringUtil.isEmpty(order)){
+		if(StringUtil.isEmpty(order)){
 			return dao.find(sb.append("order by id desc").toString());
 		}else{
 			return dao.find(sb.append(order).toString());

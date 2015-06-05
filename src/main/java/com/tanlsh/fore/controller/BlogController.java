@@ -6,7 +6,7 @@ import com.tanlsh.manage.blog.model.BlogArticleModel;
 import com.tanlsh.manage.blog.model.BlogCommentModel;
 import com.tanlsh.manage.blog.model.BlogTypeModel;
 import com.tanlsh.util.core.annotation.ControllerUrl;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 @ControllerUrl("/blog")
 public class BlogController extends Controller{
@@ -60,7 +60,7 @@ public class BlogController extends Controller{
 	public void detail(){
 		try {
 			String blogCode = getPara();
-			if(QStringUtil.notEmpty(blogCode)){
+			if(StringUtil.notEmpty(blogCode)){
 				BlogArticleModel blog = BlogArticleModel.dao.findByCode(blogCode);
 				blog.set("blog_article_read_times", ((Integer)blog.get("blog_article_read_times") + 1)).update();
 				

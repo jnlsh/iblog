@@ -11,7 +11,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -82,7 +82,7 @@ public class EncodeUtil {
 	 * @throws Exception
 	 */
 	public static byte[] base64Decode(String base64Code) throws Exception{
-		return QStringUtil.isEmpty(base64Code) ? null : new BASE64Decoder().decodeBuffer(base64Code);
+		return StringUtil.isEmpty(base64Code) ? null : new BASE64Decoder().decodeBuffer(base64Code);
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public class EncodeUtil {
 	 * @throws Exception
 	 */
 	public static byte[] md5(String msg) throws Exception {
-		return QStringUtil.isEmpty(msg) ? null : md5(msg.getBytes());
+		return StringUtil.isEmpty(msg) ? null : md5(msg.getBytes());
 	}
 	
 	/**
@@ -115,7 +115,7 @@ public class EncodeUtil {
 	 * @throws Exception
 	 */
 	public static String md5Encrypt(String msg) throws Exception{
-		return QStringUtil.isEmpty(msg) ? null : base64Encode(md5(msg));
+		return StringUtil.isEmpty(msg) ? null : base64Encode(md5(msg));
 	}
 	
 	/**
@@ -172,7 +172,7 @@ public class EncodeUtil {
 	 * @throws Exception
 	 */
 	public static String aesDecrypt(String encryptStr, String decryptKey) throws Exception {
-		return QStringUtil.isEmpty(encryptStr) ? null : aesDecryptByBytes(base64Decode(encryptStr), decryptKey);
+		return StringUtil.isEmpty(encryptStr) ? null : aesDecryptByBytes(base64Decode(encryptStr), decryptKey);
 	}
 	
     /**

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * @author qiaowenbin
  * @version 0.0.3.20140617
  */
-public class QSessionUtil {
+public class SessionUtil {
 	
 	/**
 	 * 获取session

@@ -6,9 +6,9 @@ import com.tanlsh.util.jfinal.ucenter.model.UcenterRoleModel;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterRoleRUserModel;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 import com.tanlsh.util.jfinal.ucenter.service.RoleService;
-import com.tanlsh.util.plugin.json.QJsonUtil;
-import com.tanlsh.util.plugin.tree.QTree;
-import com.tanlsh.util.plugin.tree.QTreeCheck;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
+import com.tanlsh.util.plugin.tree.MyTree;
+import com.tanlsh.util.plugin.tree.MyTreeCheck;
 
 /**
  * UcenterRoleController
@@ -42,7 +42,7 @@ public class UcenterRoleController extends BaseController{
 		if(validate == null){
 			renderJson(save(UcenterRoleModel.class));
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	
@@ -88,7 +88,7 @@ public class UcenterRoleController extends BaseController{
 		final int roleId = getParaToInt();
 		
 		setAttr("roleid", roleId);
-		setAttr("tree", new QTree(0, "/", "根菜单", null, new QTreeCheck(){
+		setAttr("tree", new MyTree(0, "/", "根菜单", null, new MyTreeCheck(){
 			@Override
 			public boolean isCheck(int menuId) {
 				String sql = "select count(*) from t_ucenter_role_r_menu where ucenter_role_id=? and ucenter_menu_id=?";

@@ -26,7 +26,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
  * @author qiaowenbin
  * @version 0.0.2.20140515
  */
-public class QResponseUtil {
+public class ResponseUtil {
 	
 	/**
 	 * 将json写到前台

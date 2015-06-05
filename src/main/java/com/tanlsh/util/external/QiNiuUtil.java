@@ -4,7 +4,7 @@ import com.qiniu.api.auth.digest.Mac;
 import com.qiniu.api.io.IoApi;
 import com.qiniu.api.io.PutExtra;
 import com.qiniu.api.rs.PutPolicy;
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 
 /**
  * 七牛云工具类<br>
@@ -14,14 +14,14 @@ import com.tanlsh.util.core.file.QPropertiesUtil;
  * @history
  * 	0.0.1.20141209<br>
  */
-public class QQiNiuUtil {
+public class QiNiuUtil {
 	
 	private static String uptoken = null;
 	static{
 		try {
-			String ak = QPropertiesUtil.config.getProperty("qiniu.ak");
-			String sk = QPropertiesUtil.config.getProperty("qiniu.sk");
-			String bucket = QPropertiesUtil.config.getProperty("qiniu.bucket");
+			String ak = PropertiesUtil.config.getProperty("qiniu.ak");
+			String sk = PropertiesUtil.config.getProperty("qiniu.sk");
+			String bucket = PropertiesUtil.config.getProperty("qiniu.bucket");
 			uptoken = new PutPolicy(bucket).token(new Mac(ak, sk));
 		} catch (Exception e) {
 			e.printStackTrace();

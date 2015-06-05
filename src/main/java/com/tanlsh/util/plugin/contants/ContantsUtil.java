@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 
 /**
  * 常量工具类
  * @author qiaowenbin
  * @version 0.0.2.20140909
  */
-public class QContantsUtil {
+public class ContantsUtil {
 	
-	private static final Properties CONTANTS = QPropertiesUtil.readProperties("/contants.properties");
+	private static final Properties CONTANTS = PropertiesUtil.readProperties("/contants.properties");
 	
-	public static List<QContantsModel> list(String[] values){
-		List<QContantsModel> list = new ArrayList<QContantsModel>();
+	public static List<ContantsModel> list(String[] values){
+		List<ContantsModel> list = new ArrayList<ContantsModel>();
 		if(values != null){
 			for(String value : values){
-				list.add(new QContantsModel(value, get(value)));
+				list.add(new ContantsModel(value, get(value)));
 			}
 		}
 		

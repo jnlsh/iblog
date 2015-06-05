@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  * 	0.0.7.20141009<br>
  * 	0.0.6.20140926<br>
  */
-public class QStringUtil {
+public class StringUtil {
 
 	/**
 	 * 判空
@@ -297,7 +297,7 @@ public class QStringUtil {
 	public static List<String> tuoFeng(String s){
 		List<String> res = new ArrayList<String>();
 		
-		if(QStringUtil.notEmpty(s)){
+		if(StringUtil.notEmpty(s)){
 			StringBuilder sb = new StringBuilder();
 			for(int i=0; i<s.length(); i++){
 				if(i != 0 && Character.isUpperCase(s.charAt(i))){
@@ -323,10 +323,10 @@ public class QStringUtil {
 	 */
 	public static String getClassNameFromTableName(String tableName){
 		StringBuilder sb = new StringBuilder();
-		if(QStringUtil.notEmpty(tableName)){
+		if(StringUtil.notEmpty(tableName)){
 			String[] ss = tableName.split("_");
 			for(int i=1; i<ss.length; i++){
-				sb.append(QStringUtil.firstUpper(ss[i].toLowerCase()));
+				sb.append(StringUtil.firstUpper(ss[i].toLowerCase()));
 			}
 		}
 		
@@ -341,7 +341,7 @@ public class QStringUtil {
 	public static String getTableNameFromClazzName(String clazzName){
 		StringBuilder sb = new StringBuilder("t");
 		
-		List<String> names = QStringUtil.tuoFeng(clazzName);
+		List<String> names = StringUtil.tuoFeng(clazzName);
 		for(String s: names){
 			sb.append("_" + s.toLowerCase());
 		}

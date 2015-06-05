@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author qiaowenbin
  * @version 0.0.4.20140617
  */
-public class QRequestUtil {
+public class RequestUtil {
 	
 	/**
 	 * 获取request中一些常用的信息

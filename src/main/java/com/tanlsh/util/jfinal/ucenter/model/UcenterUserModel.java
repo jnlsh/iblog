@@ -3,14 +3,14 @@ package com.tanlsh.util.jfinal.ucenter.model;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.tanlsh.util.core.annotation.QTable;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.annotation.Table;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * 用户
  * @author uikoo9
  */
-@QTable("t_ucenter_user")
+@Table("t_ucenter_user")
 @SuppressWarnings("serial")
 public class UcenterUserModel extends Model<UcenterUserModel>{
 
@@ -31,7 +31,7 @@ public class UcenterUserModel extends Model<UcenterUserModel>{
 	 */
 	public List<UcenterUserModel> findAll(String order){
 		StringBuilder sb = new StringBuilder("select * from t_ucenter_user ");
-		if(QStringUtil.isEmpty(order)){
+		if(StringUtil.isEmpty(order)){
 			return dao.find(sb.append("order by id desc").toString());
 		}else{
 			return dao.find(sb.append(order).toString());

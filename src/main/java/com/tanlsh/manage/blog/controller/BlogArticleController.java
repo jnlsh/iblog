@@ -4,7 +4,7 @@ import com.tanlsh.manage.blog.model.BlogArticleModel;
 import com.tanlsh.manage.blog.model.BlogTypeModel;
 import com.tanlsh.util.core.annotation.ControllerUrl;
 import com.tanlsh.util.jfinal.BaseController;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * BlogArticleController
@@ -39,7 +39,7 @@ public class BlogArticleController extends BaseController{
 		if(validate == null){
 			renderJson(save(BlogArticleModel.class));
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	

@@ -10,26 +10,26 @@ package com.tanlsh.util.plugin.json;
  * 	0.0.4.20141104<br>
  * 	0.0.3.20140901<br>
  */
-public class QJson{
+public class MyJson{
 	
 	private boolean success = true;
 	private String msg;
 	private String type;
 	private Object object;
 	
-	public QJson(){}
-	public QJson(String type){
+	public MyJson(){}
+	public MyJson(String type){
 		this.type = type;
 	}
-	public QJson(String msg, String type){
+	public MyJson(String msg, String type){
 		this.msg = msg;
 		this.type = type;
 	}
-	public QJson(Object object, String type){
+	public MyJson(Object object, String type){
 		this.object = object;
 		this.type = type;
 	}
-	public QJson(String msg, Object object, String type){
+	public MyJson(String msg, Object object, String type){
 		this.msg = msg;
 		this.object = object;
 		this.type = type;

@@ -10,7 +10,7 @@ import net.lingala.zip4j.util.Zip4jConstants;
  * 压缩DTO
  * @author qiaowenbin
  */
-public class QZip {
+public class MyZip {
 	private String zipFile;
 	private ArrayList<File> files;
 	private String folder;
@@ -23,39 +23,39 @@ public class QZip {
 		parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
 	}
 	
-	public QZip() {
+	public MyZip() {
 		super();
 	}
-	public QZip(String zipFile, ArrayList<File> files) {
+	public MyZip(String zipFile, ArrayList<File> files) {
 		super();
 		this.zipFile = zipFile;
 		this.files = files;
 	}
-	public QZip(String zipFile, ArrayList<File> files, String password) {
+	public MyZip(String zipFile, ArrayList<File> files, String password) {
 		super();
 		this.zipFile = zipFile;
 		this.files = files;
 		this.password = password;
 	}
-	public QZip(String zipFile, ArrayList<File> files, String password, String encryptType) {
+	public MyZip(String zipFile, ArrayList<File> files, String password, String encryptType) {
 		super();
 		this.zipFile = zipFile;
 		this.files = files;
 		this.password = password;
 		this.encryptType = encryptType;
 	}
-	public QZip(String zipFile, String folder) {
+	public MyZip(String zipFile, String folder) {
 		super();
 		this.zipFile = zipFile;
 		this.folder = folder;
 	}
-	public QZip(String zipFile, String folder, String password) {
+	public MyZip(String zipFile, String folder, String password) {
 		super();
 		this.zipFile = zipFile;
 		this.folder = folder;
 		this.password = password;
 	}
-	public QZip(String zipFile, String folder, String password, String encryptType) {
+	public MyZip(String zipFile, String folder, String password, String encryptType) {
 		super();
 		this.zipFile = zipFile;
 		this.folder = folder;

@@ -1,13 +1,13 @@
 package com.tanlsh.util.jfinal.ucenter.controller;
 
 import com.jfinal.plugin.activerecord.Record;
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 import com.tanlsh.util.function.EncodeUtil;
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
-import com.tanlsh.util.plugin.contants.QContants;
-import com.tanlsh.util.plugin.contants.QContantsUtil;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.contants.Contants;
+import com.tanlsh.util.plugin.contants.ContantsUtil;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * 用户中心-用户controller
@@ -20,7 +20,7 @@ public class UcenterUserController extends BaseController{
 	 */
 	public void index(){
 		setAttr("qpage", list(UcenterUserModel.class));
-		if(QPropertiesUtil.getPropertyToBoolean(QPropertiesUtil.config, "jfinal.auth.use_inside_user_page")){
+		if(PropertiesUtil.getPropertyToBoolean(PropertiesUtil.config, "jfinal.auth.use_inside_user_page")){
 			render("/WEB-INF/classes/com/tanlsh/util/jfinal/view/ucenter/ucenter-user-index.ftl");
 		}else{
 			render("/WEB-INF/view/manage/ucenter/ucenter-user-index.ftl");
@@ -31,10 +31,10 @@ public class UcenterUserController extends BaseController{
 	 * 跳转到保存修改页 
 	 */
 	public void savep(){
-		setAttr("usertypes", QContantsUtil.list(QContants.USER_TYPE));
+		setAttr("usertypes", ContantsUtil.list(Contants.USER_TYPE));
 		
 		setAttr("row", getRow(UcenterUserModel.class));
-		if(QPropertiesUtil.getPropertyToBoolean(QPropertiesUtil.config, "jfinal.auth.use_inside_user_page")){
+		if(PropertiesUtil.getPropertyToBoolean(PropertiesUtil.config, "jfinal.auth.use_inside_user_page")){
 			render("/WEB-INF/classes/com/tanlsh/util/jfinal/view/ucenter/ucenter-user-input.ftl");
 		}else{
 			render("/WEB-INF/view/manage/ucenter/ucenter-user-input.ftl");
@@ -49,7 +49,7 @@ public class UcenterUserController extends BaseController{
 		if(validate == null){
 			renderJson(save(UcenterUserModel.class));
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	

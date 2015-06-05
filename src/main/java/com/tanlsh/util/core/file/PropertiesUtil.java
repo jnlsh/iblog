@@ -3,7 +3,7 @@ package com.tanlsh.util.core.file;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * 资源工具类<br>
@@ -17,7 +17,7 @@ import com.tanlsh.util.core.data.QStringUtil;
  * 	0.0.2.20141220<br>
  * 	0.0.1.20141117<br>
  */
-public class QPropertiesUtil {
+public class PropertiesUtil {
 	
 	public static final Properties config = readProperties("/config.properties");
 	
@@ -29,7 +29,7 @@ public class QPropertiesUtil {
 	public static Properties readProperties(String path){
 		Properties p = new Properties();
 		try {
-			p.load(QPropertiesUtil.class.getResourceAsStream(path));
+			p.load(PropertiesUtil.class.getResourceAsStream(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class QPropertiesUtil {
 	 * @return
 	 */
 	public static String getProperty(Properties properties, String key){
-		if(properties != null && QStringUtil.notEmpty(key)){
+		if(properties != null && StringUtil.notEmpty(key)){
 			return properties.getProperty(key);
 		}else{
 			return null;
@@ -76,7 +76,7 @@ public class QPropertiesUtil {
 	 * @return
 	 */
 	public static boolean getPropertyToBoolean(Properties properties, String key){
-		if(properties != null && QStringUtil.notEmpty(key)){
+		if(properties != null && StringUtil.notEmpty(key)){
 			return Boolean.parseBoolean(properties.getProperty(key));
 		}else{
 			return false;

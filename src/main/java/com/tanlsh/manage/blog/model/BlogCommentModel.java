@@ -3,8 +3,8 @@ package com.tanlsh.manage.blog.model;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.tanlsh.util.core.annotation.QTable;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.annotation.Table;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * BlogCommentModel<br>
@@ -18,7 +18,7 @@ import com.tanlsh.util.core.data.QStringUtil;
  * cuser_name				创建人姓名<br>
  * @author qiaowenbin
  */
-@QTable("t_blog_comment")
+@Table("t_blog_comment")
 @SuppressWarnings("serial")
 public class BlogCommentModel extends Model<BlogCommentModel>{
 	
@@ -39,7 +39,7 @@ public class BlogCommentModel extends Model<BlogCommentModel>{
 	 */
 	public List<BlogCommentModel> findAll(String order){
 		StringBuilder sb = new StringBuilder("select * from t_blog_comment ");
-		if(QStringUtil.isEmpty(order)){
+		if(StringUtil.isEmpty(order)){
 			return dao.find(sb.append("order by id desc").toString());
 		}else{
 			return dao.find(sb.append(order).toString());

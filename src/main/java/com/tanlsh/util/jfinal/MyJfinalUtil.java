@@ -13,10 +13,10 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.tanlsh.util.core.annotation.ControllerUrl;
-import com.tanlsh.util.core.annotation.QTable;
-import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.core.file.QFileUtil;
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.annotation.Table;
+import com.tanlsh.util.core.data.StringUtil;
+import com.tanlsh.util.core.file.FileUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.function.DbUtil;
 import com.tanlsh.util.jfinal.ucenter.controller.UcenterLoginController;
@@ -35,7 +35,7 @@ import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
  * @author qiaowenbin
  * @version 0.0.6.20140830
  */
-public class QJfinalUtil {
+public class MyJfinalUtil {
 	
 	/**
 	 * 初始化数据库信息和数据库映射
@@ -45,9 +45,9 @@ public class QJfinalUtil {
 	@SuppressWarnings("unchecked")
 	public static void initDbAndArp(Plugins me){
 		C3p0Plugin c3p0Plugin = new C3p0Plugin(
-				QPropertiesUtil.config.getProperty("db.url"), 
-				QPropertiesUtil.config.getProperty("db.username"), 
-				QPropertiesUtil.config.getProperty("db.password"));
+				PropertiesUtil.config.getProperty("db.url"), 
+				PropertiesUtil.config.getProperty("db.username"), 
+				PropertiesUtil.config.getProperty("db.password"));
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 
 		me.add(c3p0Plugin);
@@ -56,17 +56,17 @@ public class QJfinalUtil {
 		try {
 			Connection con = null;
 			try{
-				con = DbUtil.getCon(QPropertiesUtil.config);
+				con = DbUtil.getCon(PropertiesUtil.config);
 				
-				QFileUtil.getAllFiles(QFileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes");
-				for(String s : QFileUtil.fileList){
+				FileUtil.getAllFiles(FileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes");
+				for(String s : FileUtil.fileList){
 					if(s.endsWith("Model.class")){
 						String classPath = s.split("classes")[1].replace(File.separator, ".");
 						String className = classPath.substring(1, classPath.length() - 6); 
 						
 						Class<? extends Model<?>>  theClass = (Class<? extends Model<?>> ) (Class.forName(className));
-						if(theClass.isAnnotationPresent(QTable.class)){
-							arp.addMapping(theClass.getAnnotation(QTable.class).value(), "id", theClass);
+						if(theClass.isAnnotationPresent(Table.class)){
+							arp.addMapping(theClass.getAnnotation(Table.class).value(), "id", theClass);
 						}
 					}
 				}
@@ -76,17 +76,17 @@ public class QJfinalUtil {
 				DbUtil.closeCon(con);
 			}
 			
-			QFileUtil.fileList.clear();
+			FileUtil.fileList.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	private static void initPackageArp(ActiveRecordPlugin arp){
-		arp.addMapping(UcenterUserModel.class.getAnnotation(QTable.class).value(), UcenterUserModel.class);
-		arp.addMapping(UcenterMenuModel.class.getAnnotation(QTable.class).value(), UcenterMenuModel.class);
-		arp.addMapping(UcenterRoleModel.class.getAnnotation(QTable.class).value(), UcenterRoleModel.class);
-		arp.addMapping(UcenterRoleRUserModel.class.getAnnotation(QTable.class).value(), UcenterRoleRUserModel.class);
-		arp.addMapping(UcenterRoleRMenuModel.class.getAnnotation(QTable.class).value(), UcenterRoleRMenuModel.class);
+		arp.addMapping(UcenterUserModel.class.getAnnotation(Table.class).value(), UcenterUserModel.class);
+		arp.addMapping(UcenterMenuModel.class.getAnnotation(Table.class).value(), UcenterMenuModel.class);
+		arp.addMapping(UcenterRoleModel.class.getAnnotation(Table.class).value(), UcenterRoleModel.class);
+		arp.addMapping(UcenterRoleRUserModel.class.getAnnotation(Table.class).value(), UcenterRoleRUserModel.class);
+		arp.addMapping(UcenterRoleRMenuModel.class.getAnnotation(Table.class).value(), UcenterRoleRMenuModel.class);
 	}
 	
 	/**
@@ -97,8 +97,8 @@ public class QJfinalUtil {
 	@SuppressWarnings("unchecked")
 	public static void initController(Routes me){
 		try {
-			QFileUtil.getAllFiles(QFileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes");
-			for(String s : QFileUtil.fileList){
+			FileUtil.getAllFiles(FileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes");
+			for(String s : FileUtil.fileList){
 				if(s.endsWith("Controller.class")){
 					String classPath = s.split("classes")[1].replace(File.separator, ".");
 					String className = classPath.substring(1, classPath.length() - 6); 
@@ -109,7 +109,7 @@ public class QJfinalUtil {
 					}
 				}
 			}
-			QFileUtil.fileList.clear();
+			FileUtil.fileList.clear();
 
 			initPackageController(me);
 		} catch (Exception e) {
@@ -133,14 +133,14 @@ public class QJfinalUtil {
 		String destBasePath = PathKit.getWebRootPath() + File.separator;
 		
 		String classes = destBasePath + "WEB-INF" + File.separator + "classes";
-		QFileUtil.copyFileFormJar(sourcePath, classes, "ehcache.xml");
-		if(QPropertiesUtil.getBoolean("jfinal.auth.use_inside_contants_file")){
-			QFileUtil.copyFileFormJar(sourcePath, classes, "contants.properties");
+		FileUtil.copyFileFormJar(sourcePath, classes, "ehcache.xml");
+		if(PropertiesUtil.getBoolean("jfinal.auth.use_inside_contants_file")){
+			FileUtil.copyFileFormJar(sourcePath, classes, "contants.properties");
 		}
 		
 		// copy qiao.js
 		String wui = destBasePath + "WUI";
-		QFileUtil.copyFileFormJar(sourcePath, wui, "qiao.js");
+		FileUtil.copyFileFormJar(sourcePath, wui, "qiao.js");
 	}
 	
 	/**
@@ -169,8 +169,8 @@ public class QJfinalUtil {
 		for (String col : obj.getAttrNames()) {
 			Object value = obj.get(col);
 			if (value != null) {
-				String type = QStringUtil.splitAndReturnLastString(value.getClass().toString(), "\\.");
-				if ("String".equals(type) && QStringUtil.notEmpty((String) value)) {
+				String type = StringUtil.splitAndReturnLastString(value.getClass().toString(), "\\.");
+				if ("String".equals(type) && StringUtil.notEmpty((String) value)) {
 					sb.append(" and " + col + " like '%" + value + "%' ");
 				}
 
@@ -191,7 +191,7 @@ public class QJfinalUtil {
 	 * @return
 	 */
 	public static String value(Map<String, String[]> paras, String key){
-		if(paras != null && QStringUtil.notEmpty(key) && paras.get(key) != null){
+		if(paras != null && StringUtil.notEmpty(key) && paras.get(key) != null){
 			return paras.get(key)[0];
 		}else{
 			return null;

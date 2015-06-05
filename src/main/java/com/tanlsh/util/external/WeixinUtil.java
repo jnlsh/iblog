@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 import com.tanlsh.util.function.EncodeUtil;
 
 /**
@@ -15,7 +15,7 @@ import com.tanlsh.util.function.EncodeUtil;
  * @history
  * 	0.0.1.2015020601<br>
  */
-public class QWeixinUtil {
+public class WeixinUtil {
 	
 	/**
 	 * 微信token校验
@@ -42,7 +42,7 @@ public class QWeixinUtil {
 	 * @return
 	 */
 	public static String checkToken(String signature, String timestamp, String nonce, String echostr, String token){
-		if(QStringUtil.allNotEmpty(signature, timestamp, nonce, echostr, token)){
+		if(StringUtil.allNotEmpty(signature, timestamp, nonce, echostr, token)){
 			StringBuilder sb = new StringBuilder();
 			String[] tmp = {token, timestamp, nonce};
 			Arrays.sort(tmp);

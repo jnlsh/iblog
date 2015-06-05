@@ -18,7 +18,7 @@ import java.util.List;
  * 	0.0.2.20150301<br>
  * 	0.0.1.20140430<br>
  */
-public class QArrayUtil {
+public class ArrayUtil {
 	
 	/**
 	 * 字符串数据去重

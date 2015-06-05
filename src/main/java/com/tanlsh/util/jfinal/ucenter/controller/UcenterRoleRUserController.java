@@ -2,7 +2,7 @@ package com.tanlsh.util.jfinal.ucenter.controller;
 
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterRoleRUserModel;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * UcenterRoleRUserController
@@ -34,7 +34,7 @@ public class UcenterRoleRUserController extends BaseController{
 		if(validate == null){
 			renderJson(save(UcenterRoleRUserModel.class));
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	

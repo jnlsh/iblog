@@ -7,7 +7,7 @@ import java.util.List;
  * @author qiaowenbin
  * @version 0.0.3.20140825
  */
-public class QPage {
+public class MyPage {
 
 	private String ids;
 	private String str;
@@ -17,7 +17,7 @@ public class QPage {
 	private int totalRow;				
 	private List<? extends Object> list;
 	
-	public QPage() {
+	public MyPage() {
 		super();
 	}
 	

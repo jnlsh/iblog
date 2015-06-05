@@ -5,14 +5,14 @@ package com.tanlsh.util.plugin.contants;
  * @author qiaowenbin
  * @version 0.0.1.20140830
  */
-public class QContantsModel {
+public class ContantsModel {
 	private String value;
 	private String text;
 	
-	public QContantsModel() {
+	public ContantsModel() {
 		super();
 	}
-	public QContantsModel(String value, String text) {
+	public ContantsModel(String value, String text) {
 		super();
 		this.value = value;
 		this.text = text;

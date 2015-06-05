@@ -5,8 +5,8 @@ import com.tanlsh.manage.blog.model.BlogTypeModel;
 import com.tanlsh.util.core.annotation.ControllerUrl;
 import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.jfinal.BaseController;
-import com.tanlsh.util.plugin.json.QJson;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.json.MyJson;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * BlogTypeController
@@ -38,14 +38,14 @@ public class BlogTypeController extends BaseController{
 	public void save(){
 		String validate = validate();
 		if(validate == null){
-			QJson json = save(BlogTypeModel.class);
-			if(QJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
+			MyJson json = save(BlogTypeModel.class);
+			if(MyJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
 				CacheUtil.putToEHCache("blogTypes", BlogTypeModel.dao.findAll("order by blog_type_name"));
 			}
 			
 			renderJson(json);
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	
@@ -53,8 +53,8 @@ public class BlogTypeController extends BaseController{
 	 * 删除一条或多条
 	 */
 	public void del(){
-		QJson json = del(BlogTypeModel.class, BlogArticleModel.class, "blog_type_id");
-		if(QJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
+		MyJson json = del(BlogTypeModel.class, BlogArticleModel.class, "blog_type_id");
+		if(MyJsonUtil.TYPE_BS_SUCC.equals(json.getType())){
 			CacheUtil.putToEHCache("blogTypes", BlogTypeModel.dao.findAll("order by blog_type_name"));
 		}
 		

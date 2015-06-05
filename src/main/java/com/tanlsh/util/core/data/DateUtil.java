@@ -18,7 +18,7 @@ import java.util.Date;
  * 	0.0.2.20150301<br>
  * 	0.0.1.20140430<br>
  */
-public class QDateUtil {
+public class DateUtil {
 	
 	/**
 	 * 格式化时间

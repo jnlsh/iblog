@@ -4,7 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * cookie工具类<br>
@@ -19,7 +19,7 @@ import com.tanlsh.util.core.data.QStringUtil;
  * 	0.0.2.20141109<br>
  * 	0.0.1.20140430<br>
  */
-public class QCookieUtil {
+public class CookieUtil {
 	
 	/**
 	 * 添加cookie，浏览器关闭后失效
@@ -60,7 +60,7 @@ public class QCookieUtil {
 	 * @param value
 	 */
 	public static void setCookie(HttpServletResponse response, String name, String value, int maxage){
-		if(response != null && QStringUtil.allNotEmpty(new String[]{name, value})){
+		if(response != null && StringUtil.allNotEmpty(new String[]{name, value})){
 			Cookie cookie = new Cookie(name, value);
 			cookie.setMaxAge(maxage);
 			cookie.setPath("/");
@@ -76,7 +76,7 @@ public class QCookieUtil {
 	 * @return
 	 */
 	public static String getValue(HttpServletRequest request, String name){
-		if(QStringUtil.notEmpty(name) && request != null && request.getCookies() != null){
+		if(StringUtil.notEmpty(name) && request != null && request.getCookies() != null){
 			for(Cookie cookie : request.getCookies()){
 				if(name.equals(cookie.getName())){
 					return cookie.getValue();

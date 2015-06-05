@@ -1,4 +1,4 @@
-<#include "/WEB-INF/classes/com/uikoo9/util/jfinal/view/common/inc.ftl"/>
+<#include "/WEB-INF/classes/com/tanlsh/util/jfinal/view/common/inc.ftl"/>
 
 <#-- bshead -->
 <#macro bshead pos='top' sname='QBlog' shref='http://qbloger.duapp.com/'>

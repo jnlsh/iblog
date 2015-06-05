@@ -3,16 +3,16 @@ package com.tanlsh.util.jfinal.ucenter.model;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.tanlsh.util.core.annotation.QTable;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.annotation.Table;
+import com.tanlsh.util.core.data.StringUtil;
 import com.tanlsh.util.function.CacheUtil;
-import com.tanlsh.util.plugin.contants.QContants;
+import com.tanlsh.util.plugin.contants.Contants;
 
 /**
  * 菜单
  * @author uikoo9
  */
-@QTable("t_ucenter_menu")
+@Table("t_ucenter_menu")
 @SuppressWarnings("serial")
 public class UcenterMenuModel extends Model<UcenterMenuModel>{
 	
@@ -33,7 +33,7 @@ public class UcenterMenuModel extends Model<UcenterMenuModel>{
 	 */
 	public List<UcenterMenuModel> findAll(String order){
 		StringBuilder sb = new StringBuilder("select * from t_ucenter_menu ");
-		if(QStringUtil.isEmpty(order)){
+		if(StringUtil.isEmpty(order)){
 			return dao.find(sb.append("order by id desc").toString());
 		}else{
 			return dao.find(sb.append(order).toString());
@@ -51,7 +51,7 @@ public class UcenterMenuModel extends Model<UcenterMenuModel>{
 		Object menusObject = CacheUtil.getFromEHCache("menus");
 		if(menusObject == null){
 			String sql = "select * from t_ucenter_menu where ucenter_menu_parent_id=0 and ucenter_menu_type=? order by ucenter_menu_sn";
-			menus = dao.find(sql, QContants.YESNO_YES);
+			menus = dao.find(sql, Contants.YESNO_YES);
 			CacheUtil.putToEHCache("menus", menus);
 		}else{
 			menus = (List<UcenterMenuModel>) menusObject;

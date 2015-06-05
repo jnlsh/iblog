@@ -3,7 +3,7 @@ package com.tanlsh.util.jfinal.ucenter.controller;
 import com.tanlsh.util.core.annotation.ControllerUrl;
 import com.tanlsh.util.jfinal.BaseController;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterRoleRMenuModel;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * UcenterRoleRMenuController
@@ -36,7 +36,7 @@ public class UcenterRoleRMenuController extends BaseController{
 		if(validate == null){
 			renderJson(save(UcenterRoleRMenuModel.class));
 		}else{
-			renderJson(QJsonUtil.error(validate));
+			renderJson(MyJsonUtil.error(validate));
 		}
 	}
 	

@@ -10,19 +10,19 @@ import net.lingala.zip4j.model.FileHeader;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.Zip4jConstants;
 
-import com.tanlsh.util.core.data.QArrayUtil;
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.ArrayUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
-public class QZipUtil {
+public class MyZipUtil {
 	
 	/**
 	 * 压缩
 	 * @param zip zip的dto
 	 * @return
 	 */
-	public static String compress(QZip zip){
+	public static String compress(MyZip zip){
 		String zipFile = zip.getZipFile();
-		if(QStringUtil.isEmpty(zipFile)) return "请设置压缩生成文件路径！";
+		if(StringUtil.isEmpty(zipFile)) return "请设置压缩生成文件路径！";
 
 		ZipParameters parameters = zip.getParameters();
 		if(parameters == null){
@@ -33,7 +33,7 @@ public class QZipUtil {
 		
 		String password = zip.getPassword();
 		String encryptType = zip.getEncryptType();
-		if(QStringUtil.notEmpty(password)){
+		if(StringUtil.notEmpty(password)){
 			parameters.setEncryptFiles(true);
 			if("AES".equals(encryptType)){
 				parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
@@ -47,12 +47,12 @@ public class QZipUtil {
 		try {
 			ArrayList<File> files = zip.getFiles();
 			String folder = zip.getFolder();
-			if(QArrayUtil.isEmpty(files) && QStringUtil.isEmpty(folder)){
+			if(ArrayUtil.isEmpty(files) && StringUtil.isEmpty(folder)){
 				return "请设置压缩文件或文件夹！";
-			}else if(QArrayUtil.notEmpty(files)){
+			}else if(ArrayUtil.notEmpty(files)){
 				new ZipFile(zipFile).addFiles(files, parameters);
 				return "压缩成功！";
-			}else if(QStringUtil.notEmpty(folder)){
+			}else if(StringUtil.notEmpty(folder)){
 				new ZipFile(zipFile).addFolder(folder, parameters);
 				return "压缩成功！";
 			}else{

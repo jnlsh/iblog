@@ -12,17 +12,17 @@ import com.jfinal.plugin.activerecord.DbKit;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import com.tanlsh.util.core.annotation.QTable;
-import com.tanlsh.util.core.data.QArrayUtil;
-import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.core.file.QPropertiesUtil;
-import com.tanlsh.util.external.QFreemarkerUtil;
+import com.tanlsh.util.core.annotation.Table;
+import com.tanlsh.util.core.data.ArrayUtil;
+import com.tanlsh.util.core.data.StringUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
+import com.tanlsh.util.external.FreemarkerUtil;
 import com.tanlsh.util.function.DbUtil;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
-import com.tanlsh.util.plugin.crud.QColumnInfo;
-import com.tanlsh.util.plugin.crud.QPage;
-import com.tanlsh.util.plugin.json.QJson;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.crud.ColumnInfo;
+import com.tanlsh.util.plugin.crud.MyPage;
+import com.tanlsh.util.plugin.json.MyJson;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * 基础controller，封装一些常用方法
@@ -39,13 +39,13 @@ public class BaseController extends Controller{
 	 * @param modelClass
 	 * @return
 	 */
-	public QPage list(Class<? extends Model<?>> modelClass){
+	public MyPage list(Class<? extends Model<?>> modelClass){
 		Integer pageNumber = getParaToInt("pageNumber") == null ? 1 : getParaToInt("pageNumber");
 		Integer pageSize = getParaToInt("pageSize") == null ? 10 : getParaToInt("pageSize");
 		
-		String sql = QJfinalUtil.addWhere(modelClass.getAnnotation(QTable.class).value(), getModel(modelClass, "row"));
+		String sql = MyJfinalUtil.addWhere(modelClass.getAnnotation(Table.class).value(), getModel(modelClass, "row"));
 		
-		QPage qpage = new QPage();
+		MyPage qpage = new MyPage();
 		Page<Record> page = Db.paginate(pageNumber, pageSize, "select * ", sql);
 		qpage.setList(page.getList());
 		qpage.setPageNumber(pageNumber);
@@ -54,8 +54,8 @@ public class BaseController extends Controller{
 		qpage.setTotalRow(page.getTotalRow());
 		qpage.setStr("select * " + sql);
 		
-		if(QPropertiesUtil.getPropertyToBoolean(QPropertiesUtil.config, "jfinal.freemarker_static")){
-			setAttr("util", QFreemarkerUtil.getStaticClass("com.tanlsh.util.plugin.contants.QContantsUtil"));
+		if(PropertiesUtil.getPropertyToBoolean(PropertiesUtil.config, "jfinal.freemarker_static")){
+			setAttr("util", FreemarkerUtil.getStaticClass("com.tanlsh.util.plugin.contants.QContantsUtil"));
 		}
 		
 		return qpage;
@@ -68,12 +68,12 @@ public class BaseController extends Controller{
 	 * @param name 别名
 	 * @return 查询列表
 	 */
-	public QPage listBySql(Map<String, String[]> paras, String tableName, String name){
+	public MyPage listBySql(Map<String, String[]> paras, String tableName, String name){
 		StringBuilder sb = new StringBuilder("from " + tableName);
 		Set<String> keys = paras.keySet();
 		for(String key : keys){
-			String value = QJfinalUtil.value(paras, key);
-			if(key.startsWith("row.") && !"row.id".equals(key) && QStringUtil.notEmpty(value)){
+			String value = MyJfinalUtil.value(paras, key);
+			if(key.startsWith("row.") && !"row.id".equals(key) && StringUtil.notEmpty(value)){
 				if(name == null){
 					sb.append(" and " + key.substring(4) + " like '%" + value + "%'");
 				}else{
@@ -96,7 +96,7 @@ public class BaseController extends Controller{
 		Integer pageNumber = getParaToInt("pageNumber") == null ? 1 : getParaToInt("pageNumber");
 		Integer pageSize = getParaToInt("pageSize") == null ? 10 : getParaToInt("pageSize");
 		
-		QPage qpage = new QPage();
+		MyPage qpage = new MyPage();
 		Page<Record> page = Db.paginate(pageNumber, pageSize, "select * ", sql);
 		qpage.setList(page.getList());
 		qpage.setPageNumber(pageNumber);
@@ -105,8 +105,8 @@ public class BaseController extends Controller{
 		qpage.setTotalRow(page.getTotalRow());
 		qpage.setStr("select * " + sql);
 		
-		if(QPropertiesUtil.getPropertyToBoolean(QPropertiesUtil.config, "jfinal.freemarker_static")){
-			setAttr("util", QFreemarkerUtil.getStaticClass("com.tanlsh.util.plugin.contants.QContantsUtil"));
+		if(PropertiesUtil.getPropertyToBoolean(PropertiesUtil.config, "jfinal.freemarker_static")){
+			setAttr("util", FreemarkerUtil.getStaticClass("com.tanlsh.util.plugin.contants.QContantsUtil"));
 		}
 		
 		return qpage;
@@ -119,7 +119,7 @@ public class BaseController extends Controller{
 	 */
 	public Record getRow(Class<? extends Model<?>> modelClass){
 		String id = getPara("id");
-		return QStringUtil.isEmpty(id) ? null : Db.findById(modelClass.getAnnotation(QTable.class).value(), id);
+		return StringUtil.isEmpty(id) ? null : Db.findById(modelClass.getAnnotation(Table.class).value(), id);
 	}
 	
 	/**
@@ -144,41 +144,41 @@ public class BaseController extends Controller{
 	 * @param modelClass model
 	 * @return
 	 */
-	public QJson save(Class<? extends Model<?>> modelClass){
+	public MyJson save(Class<? extends Model<?>> modelClass){
 		try {
-			String tableName = modelClass.getAnnotation(QTable.class).value();
+			String tableName = modelClass.getAnnotation(Table.class).value();
 			
 			String res = requireAndUniqueValidate(tableName);
 			if(res != null){
-				return QJsonUtil.error(res);
+				return MyJsonUtil.error(res);
 			}else{
 				Map<String, String[]> paras = getParaMap();
 				
-				String id = QJfinalUtil.value(paras, "row.id");
-				if(QStringUtil.isEmpty(id)){
+				String id = MyJfinalUtil.value(paras, "row.id");
+				if(StringUtil.isEmpty(id)){
 					Record record = initRecord(setValues(new Record(), paras));
 					Db.save(tableName, record);
-					return QJsonUtil.suc("添加成功！", record);
+					return MyJsonUtil.suc("添加成功！", record);
 				}else{
 					Record record = initRecord(setValues(Db.findById(tableName, id), paras));
 					Db.update(tableName, record);
-					return QJsonUtil.suc("修改成功！", record);
+					return MyJsonUtil.suc("修改成功！", record);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QJsonUtil.error("保存失败！");
+			return MyJsonUtil.error("保存失败！");
 		}
 	}
 	private String requireAndUniqueValidate(String tableName) throws SQLException, Exception{
-		Map<String, QColumnInfo> columnMap = DbUtil.getColumnInfoMap(DbKit.getConfig().getConnection(), tableName);
+		Map<String, ColumnInfo> columnMap = DbUtil.getColumnInfoMap(DbKit.getConfig().getConnection(), tableName);
 		Map<String, String[]> paras = getParaMap();
 		
 		// not null
 		for(String key : paras.keySet()){
 			if(key.startsWith("row") && !key.equals("row.id")){
-				QColumnInfo col = columnMap.get(key.substring(4));
-				if(!col.getIsNull() && QStringUtil.isEmpty(QJfinalUtil.value(paras, key))){
+				ColumnInfo col = columnMap.get(key.substring(4));
+				if(!col.getIsNull() && StringUtil.isEmpty(MyJfinalUtil.value(paras, key))){
 					return "请输入" + col.getRemarks() + "！";
 				}
 			}
@@ -187,14 +187,14 @@ public class BaseController extends Controller{
 		// unique
 		for(String key : paras.keySet()){
 			if(key.startsWith("row") && !key.equals("row.id")){
-				QColumnInfo col = columnMap.get(key.substring(4));
+				ColumnInfo col = columnMap.get(key.substring(4));
 				if(col.getIsUnique()){
 					String sql = "select * from " + tableName + " where " + key.substring(4) + "=?";
 					
 					Integer id = getParaToInt("row.id");
 					List<Record> records = 
-							id == null ? Db.find(sql, QJfinalUtil.value(paras, key)) : Db.find(sql + " and id!=?", QJfinalUtil.value(paras, key), id);
-					if(QArrayUtil.notEmpty(records)) return col.getRemarks() + "已经存在！";
+							id == null ? Db.find(sql, MyJfinalUtil.value(paras, key)) : Db.find(sql + " and id!=?", MyJfinalUtil.value(paras, key), id);
+					if(ArrayUtil.notEmpty(records)) return col.getRemarks() + "已经存在！";
 				}
 			}
 		}
@@ -205,8 +205,8 @@ public class BaseController extends Controller{
 		Set<String> keys = paras.keySet();
 		for(String key : keys){
 			if(key.startsWith("row.") && !"row.id".equals(key)){
-				String value = QJfinalUtil.value(paras, key);
-				if(QStringUtil.notEmpty(value)){
+				String value = MyJfinalUtil.value(paras, key);
+				if(StringUtil.notEmpty(value)){
 					record.set(key.substring(4), value);
 				}
 			} 
@@ -233,7 +233,7 @@ public class BaseController extends Controller{
 	 * @param tableName 表名
 	 * @return 结果
 	 */
-	public QJson del(Class<? extends Model<?>> modelClass){
+	public MyJson del(Class<? extends Model<?>> modelClass){
 		return del(modelClass, null, null);
 	}
 	
@@ -244,25 +244,25 @@ public class BaseController extends Controller{
 	 * @param pid
 	 * @return
 	 */
-	public QJson del(Class<? extends Model<?>> pClass, Class<? extends Model<?>> cClass, String pid){
+	public MyJson del(Class<? extends Model<?>> pClass, Class<? extends Model<?>> cClass, String pid){
 		try {
-			String pTable = pClass.getAnnotation(QTable.class).value();
+			String pTable = pClass.getAnnotation(Table.class).value();
 			String ids = getPara("ids");
 			
-			if(QStringUtil.notEmpty(ids)){
-				if(cClass != null && QStringUtil.notEmpty(pid)){
-					String cTable = cClass.getAnnotation(QTable.class).value();
+			if(StringUtil.notEmpty(ids)){
+				if(cClass != null && StringUtil.notEmpty(pid)){
+					String cTable = cClass.getAnnotation(Table.class).value();
 					Db.update("delete from " + cTable + " where " + pid + " in (" + ids + ")");
 				}
 				
 				Db.update("delete from " + pTable + " where id in (" + ids + ")");
-				return QJsonUtil.suc("删除成功！");
+				return MyJsonUtil.suc("删除成功！");
 			}else{
-				return QJsonUtil.error("请选择要删除的记录！");
+				return MyJsonUtil.error("请选择要删除的记录！");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QJsonUtil.error("删除失败！");
+			return MyJsonUtil.error("删除失败！");
 		}
 	}
 	

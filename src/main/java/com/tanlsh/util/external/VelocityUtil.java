@@ -22,7 +22,7 @@ import org.apache.velocity.texen.util.FileUtil;
  * 	0.0.3.20141015<br>
  * 	0.0.2.20140502<br>
  */
-public class QVelocityUtil {
+public class VelocityUtil {
 	
 	/**
 	 * 生成代码

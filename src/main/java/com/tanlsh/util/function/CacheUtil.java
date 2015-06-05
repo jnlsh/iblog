@@ -1,6 +1,6 @@
 package com.tanlsh.util.function;
 
-import com.tanlsh.util.core.data.QStringUtil;
+import com.tanlsh.util.core.data.StringUtil;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -29,7 +29,7 @@ public class CacheUtil {
 	 * @return
 	 */
 	public static Cache getEHCache(String name){
-		if(ehCacheManager != null && QStringUtil.notEmpty(name)){
+		if(ehCacheManager != null && StringUtil.notEmpty(name)){
 			return ehCacheManager.getCache(name);
 		}else{
 			return null; 

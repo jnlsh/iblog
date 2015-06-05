@@ -6,7 +6,7 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 import com.tanlsh.z.MyInterceptor;
 
 /**
@@ -14,36 +14,37 @@ import com.tanlsh.z.MyInterceptor;
  * @author qiaowenbin
  * @version 0.0.4.20140909
  */
-public class QJfinalConfig extends JFinalConfig{
+public class MyJfinalConfig extends JFinalConfig{
 	
 	@Override
 	public void configConstant(Constants me) {
-		me.setDevMode(QPropertiesUtil.getPropertyToBoolean(QPropertiesUtil.config, "jfinal.dev_mode"));
+		me.setDevMode(PropertiesUtil.getPropertyToBoolean(PropertiesUtil.config, "jfinal.dev_mode"));
 	}
 
 	@Override
 	public void configRoute(Routes me) {
-		QJfinalUtil.initController(me);
+		MyJfinalUtil.initController(me);
 	}
 
 	@Override
 	public void configPlugin(Plugins me) {
-		QJfinalUtil.initDbAndArp(me);
+		MyJfinalUtil.initDbAndArp(me);
 	}
 
 	@Override
 	public void configInterceptor(Interceptors me) {
-		me.add(new QInterceptor());
+		me.add(new JfinalInterceptor());
 		me.add(new MyInterceptor());// 自定义全局拦截器
 	}
 
 	@Override
 	public void configHandler(Handlers me) {
+		
 	}
 	
 	@Override
 	public void afterJFinalStart() {
-		QJfinalUtil.initFiles();
+		MyJfinalUtil.initFiles();
 	}
 
 }

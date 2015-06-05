@@ -23,7 +23,7 @@ import org.w3c.dom.NodeList;
  * 	0.0.2.20150301<br>
  * 	0.0.1.20141229<br>
  */
-public class QDocumentUtil {
+public class DocumentUtil {
 	
 	/**
 	 * 获取document
@@ -32,7 +32,7 @@ public class QDocumentUtil {
 	 */
 	public static Document parseDocument(String fileName){
 		try {
-			File file = new File(QFileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes/" + fileName);
+			File file = new File(FileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes/" + fileName);
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class QDocumentUtil {
 	public static List<String> getTagValue(String fileName, String tagName){
 		Document document = null;
 		try {
-			File file = new File(QFileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes/" + fileName);
+			File file = new File(FileUtil.getJarPath().split("WEB-INF")[0] + "WEB-INF/classes/" + fileName);
 			document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
 		} catch (Exception e) {
 			e.printStackTrace();

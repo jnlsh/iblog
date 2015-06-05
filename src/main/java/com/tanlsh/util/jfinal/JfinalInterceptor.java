@@ -7,11 +7,11 @@ import java.util.Map;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.core.ActionInvocation;
 import com.jfinal.core.Controller;
-import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.core.file.QDocumentUtil;
-import com.tanlsh.util.core.file.QPropertiesUtil;
-import com.tanlsh.util.core.http.QCookieUtil;
-import com.tanlsh.util.core.http.QRequestUtil;
+import com.tanlsh.util.core.data.StringUtil;
+import com.tanlsh.util.core.file.DocumentUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
+import com.tanlsh.util.core.http.CookieUtil;
+import com.tanlsh.util.core.http.RequestUtil;
 import com.tanlsh.util.function.CacheUtil;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 
@@ -20,7 +20,7 @@ import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
  * @author qiaowenbin
  * @version 0.0.6.20140909
  */
-public class QInterceptor implements Interceptor{
+public class JfinalInterceptor implements Interceptor{
 
 	@Override
 	public void intercept(ActionInvocation ai) {
@@ -52,8 +52,8 @@ public class QInterceptor implements Interceptor{
 	 * @return
 	 */
 	private void initUser(Controller controller){
-		String cookieUserId = QCookieUtil.getValue(controller.getRequest(), "uikoo9userid");
-		if(QStringUtil.notEmpty(cookieUserId)){
+		String cookieUserId = CookieUtil.getValue(controller.getRequest(), "uikoo9userid");
+		if(StringUtil.notEmpty(cookieUserId)){
 			Object valueObject = CacheUtil.getFromEHCache(cookieUserId);
 			if(valueObject != null){
 				controller.setAttr("user", (UcenterUserModel) valueObject);
@@ -70,7 +70,7 @@ public class QInterceptor implements Interceptor{
 		
 		Object devModeObject = CacheUtil.getFromEHCache("devMode");
 		if(devModeObject == null){
-			devMode = QPropertiesUtil.getBoolean("jfinal.dev_mode");
+			devMode = PropertiesUtil.getBoolean("jfinal.dev_mode");
 			CacheUtil.putToEHCache("devMode", devMode);
 		}else{
 			devMode = (Boolean) devModeObject;
@@ -88,8 +88,8 @@ public class QInterceptor implements Interceptor{
 
 		Object baseObject = CacheUtil.getFromEHCache("base");
 		if(baseObject == null){
-			if(QPropertiesUtil.getBoolean("jfinal.dev_mode")){
-				base = QRequestUtil.getHttpPath(controller.getRequest());
+			if(PropertiesUtil.getBoolean("jfinal.dev_mode")){
+				base = RequestUtil.getHttpPath(controller.getRequest());
 			}else{
 				base = "";
 			}
@@ -106,7 +106,7 @@ public class QInterceptor implements Interceptor{
 	 * @param controller
 	 */
 	private void initHtmlTitle(Controller controller){
-		controller.setAttr("title", QPropertiesUtil.get("web.html.title"));
+		controller.setAttr("title", PropertiesUtil.get("web.html.title"));
 	}
 	
 	/**
@@ -118,7 +118,7 @@ public class QInterceptor implements Interceptor{
 		String actionKey = ai.getActionKey();
 		String urlPara = ai.getController().getPara();
 		
-		if("/".equals(actionKey) && QStringUtil.isEmpty(urlPara)){
+		if("/".equals(actionKey) && StringUtil.isEmpty(urlPara)){
 			return true;
 		}else{
 	        for(String path : getPaths()){
@@ -135,7 +135,7 @@ public class QInterceptor implements Interceptor{
 		try {
 			Object pathsObject = CacheUtil.getFromEHCache("paths");
 			if(pathsObject == null){
-				paths = QDocumentUtil.getTagValue("jfinal-auth.xml", "url");
+				paths = DocumentUtil.getTagValue("jfinal-auth.xml", "url");
 				CacheUtil.putToEHCache("paths", paths);
 			}else{
 				paths = (List<String>) pathsObject;
@@ -160,7 +160,7 @@ public class QInterceptor implements Interceptor{
 		}else{
 			try {
 				String userName = user.getStr("ucenter_user_name");
-				if(QStringUtil.isIn(userName, "admin", "uikoo9")){
+				if(StringUtil.isIn(userName, "admin", "uikoo9")){
 					return true;
 				}
 				
@@ -183,7 +183,7 @@ public class QInterceptor implements Interceptor{
 		Map<String, String> urls = null;
 		Object urlsObject = CacheUtil.getFromEHCache("auths");
 		if(urlsObject == null){
-			urls = QJfinalUtil.initAuths();
+			urls = MyJfinalUtil.initAuths();
 		}else{
 			urls = (Map<String, String>) urlsObject;
 		}

@@ -16,8 +16,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
-import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.core.file.QPropertiesUtil;
+import com.tanlsh.util.core.data.StringUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
 
 /**
  * 邮件工具类<br>
@@ -79,12 +79,12 @@ public class MailUtil {
 	 * @return 邮件消息
 	 */
 	private static Message generateMailMessage(String from, String to, String title, String content, boolean isHtml){
-		final String username = QPropertiesUtil.config.getProperty("mail.user.username");
-		final String password = QPropertiesUtil.config.getProperty("mail.user.password");
-		if(QStringUtil.anyoneEmpty(new String[]{username, password, from, to, title})) return null;
+		final String username = PropertiesUtil.config.getProperty("mail.user.username");
+		final String password = PropertiesUtil.config.getProperty("mail.user.password");
+		if(StringUtil.anyoneEmpty(new String[]{username, password, from, to, title})) return null;
 		
 		Session sendMailSession = 
-				Session.getDefaultInstance(QPropertiesUtil.config,new Authenticator() {
+				Session.getDefaultInstance(PropertiesUtil.config,new Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(username, password);
 					}

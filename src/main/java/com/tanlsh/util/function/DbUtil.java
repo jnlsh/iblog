@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.tanlsh.util.core.data.QStringUtil;
-import com.tanlsh.util.core.file.QPropertiesUtil;
-import com.tanlsh.util.plugin.crud.QColumnInfo;
-import com.tanlsh.util.plugin.crud.QPage;
+import com.tanlsh.util.core.data.StringUtil;
+import com.tanlsh.util.core.file.PropertiesUtil;
+import com.tanlsh.util.plugin.crud.ColumnInfo;
+import com.tanlsh.util.plugin.crud.MyPage;
 
 /**
  * 数据库工具类<br>
@@ -49,7 +49,7 @@ public class DbUtil {
 	 * @throws Exception
 	 */
 	public static Connection getCon(String path) throws Exception{
-		return getCon(QPropertiesUtil.readProperties(path));
+		return getCon(PropertiesUtil.readProperties(path));
 	}
 	
 	/**
@@ -123,7 +123,7 @@ public class DbUtil {
 	 * @return 结果集
 	 * @throws Exception 异常
 	 */
-	public static ResultSet query(Connection con, String sql, QPage page) throws Exception{
+	public static ResultSet query(Connection con, String sql, MyPage page) throws Exception{
 		StringBuilder sb = new StringBuilder(sql);
 		
 		// 添加分页信息
@@ -158,13 +158,13 @@ public class DbUtil {
 		Connection con = null;
 		try {
 			try{
-				if(QStringUtil.notEmpty(dbPath) && QStringUtil.notEmpty(tableName)){
+				if(StringUtil.notEmpty(dbPath) && StringUtil.notEmpty(tableName)){
 					con = DbUtil.getCon(dbPath);
 					
-					String cname = QStringUtil.getClassNameFromTableName(tableName);
+					String cname = StringUtil.getClassNameFromTableName(tableName);
 					info.put("pname", tableName.split("_")[1]);
 					info.put("cname", cname);
-					info.put("vname", QStringUtil.firstLower(cname));
+					info.put("vname", StringUtil.firstLower(cname));
 					info.put("url", tableName.replace("_", "/").substring(1));
 					info.put("ftl", tableName.replace("_", "-").substring(2));
 					info.put("tablename", tableName);
@@ -199,8 +199,8 @@ public class DbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<QColumnInfo> getColumnInfoList(Connection con, String tableName) throws Exception{
-		return new ArrayList<QColumnInfo>(getColumnInfoMap(con, tableName).values());
+	public static List<ColumnInfo> getColumnInfoList(Connection con, String tableName) throws Exception{
+		return new ArrayList<ColumnInfo>(getColumnInfoMap(con, tableName).values());
 	}
 	
 	/**
@@ -210,8 +210,8 @@ public class DbUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Map<String, QColumnInfo> getColumnInfoMap(Connection con, String tableName) throws Exception{
-		Map<String, QColumnInfo> map = new HashMap<String, QColumnInfo>();
+	public static Map<String, ColumnInfo> getColumnInfoMap(Connection con, String tableName) throws Exception{
+		Map<String, ColumnInfo> map = new HashMap<String, ColumnInfo>();
 		
 		// 找到唯一约束的列集合
 		ResultSet rs = con.getMetaData().getIndexInfo(null, null, tableName, true, false);
@@ -223,13 +223,13 @@ public class DbUtil {
 		// 找到列信息
 		ResultSet colrs = con.getMetaData().getColumns(null, "%", tableName, "%");
 		while(colrs.next()){
-			QColumnInfo column = new QColumnInfo();
+			ColumnInfo column = new ColumnInfo();
 			column.setColumnName(colrs.getString("COLUMN_NAME"));
 			column.setDbType(colrs.getString("TYPE_NAME"));
 			column.setJavaType(mysqlToJava(colrs.getString("TYPE_NAME")));
 			column.setRemarks(colrs.getString("REMARKS"));
-			column.setIsNull(QStringUtil.toBoolean(colrs.getString("IS_NULLABLE")));
-			column.setIsAuto(QStringUtil.toBoolean(colrs.getString("IS_AUTOINCREMENT")));
+			column.setIsNull(StringUtil.toBoolean(colrs.getString("IS_NULLABLE")));
+			column.setIsAuto(StringUtil.toBoolean(colrs.getString("IS_AUTOINCREMENT")));
 			column.setIsUnique(uniqueColumns.contains(column.getColumnName()));
 			
 			map.put(column.getColumnName(), column);
@@ -251,7 +251,7 @@ public class DbUtil {
 		String pkName = getPkName(con, tableName);
 		ResultSet colrs = con.getMetaData().getColumns(null, "%", tableName, "%");
 		while(colrs.next()){
-			if(QStringUtil.notEmpty(pkName) && !pkName.equals(colrs.getString("COLUMN_NAME"))){
+			if(StringUtil.notEmpty(pkName) && !pkName.equals(colrs.getString("COLUMN_NAME"))){
 				Map<String, String> col = new HashMap<String, String>();
 				col.put("colname", colrs.getString("COLUMN_NAME"));
 				col.put("coltype", colrs.getString("TYPE_NAME"));
@@ -270,7 +270,7 @@ public class DbUtil {
 	 * @return
 	 */
 	public static String mysqlToJava(String mysqlType){
-		if(QStringUtil.notEmpty(mysqlType)){
+		if(StringUtil.notEmpty(mysqlType)){
 			if(mysqlType.equals("VARCHAR")){
 				return "String";
 			}

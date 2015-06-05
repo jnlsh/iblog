@@ -10,7 +10,7 @@ import freemarker.ext.beans.BeansWrapper;
  * @history
  * 	0.0.1.20141210<br>
  */
-public class QFreemarkerUtil {
+public class FreemarkerUtil {
 	
 	/**
 	 * 获取静态类

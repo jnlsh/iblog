@@ -3,13 +3,13 @@ package com.tanlsh.util.jfinal.ucenter.service;
 import java.util.Date;
 
 import com.jfinal.plugin.activerecord.Db;
-import com.tanlsh.util.jfinal.QJfinalUtil;
+import com.tanlsh.util.jfinal.MyJfinalUtil;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterMenuModel;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterRoleRMenuModel;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterRoleRUserModel;
 import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
-import com.tanlsh.util.plugin.json.QJson;
-import com.tanlsh.util.plugin.json.QJsonUtil;
+import com.tanlsh.util.plugin.json.MyJson;
+import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * Role Service
@@ -32,7 +32,7 @@ public class RoleService {
 	 * @param loginUser
 	 * @return
 	 */
-	public QJson addUser(Integer roleId, String userIds, UcenterUserModel loginUser){
+	public MyJson addUser(Integer roleId, String userIds, UcenterUserModel loginUser){
 		try {
 			for(String uid : userIds.split(",")){
 				UcenterUserModel user = UcenterUserModel.dao.findById(uid);
@@ -46,10 +46,10 @@ public class RoleService {
 					.save();
 			}
 			
-			return QJsonUtil.suc();
+			return MyJsonUtil.suc();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QJsonUtil.error("添加用户失败 !");
+			return MyJsonUtil.error("添加用户失败 !");
 		}
 	}
 	
@@ -58,16 +58,16 @@ public class RoleService {
 	 * @param rlids
 	 * @return
 	 */
-	public QJson removeUser(String rlids){
+	public MyJson removeUser(String rlids){
 		try {
 			for(String rlid : rlids.split(",")){
 				UcenterRoleRUserModel.dao.deleteById(rlid);
 			}
 			
-			return QJsonUtil.suc();
+			return MyJsonUtil.suc();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QJsonUtil.error("移除用户失败 !");
+			return MyJsonUtil.error("移除用户失败 !");
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class RoleService {
 	 * @param loginUser
 	 * @return
 	 */
-	public QJson saveUrl(Integer roleId, String ids, UcenterUserModel loginUser){
+	public MyJson saveUrl(Integer roleId, String ids, UcenterUserModel loginUser){
 		try {
 			Db.update("delete from t_ucenter_role_r_menu where ucenter_role_id=?", roleId);
 			
@@ -93,12 +93,12 @@ public class RoleService {
 					.save();
 			}
 			
-			QJfinalUtil.initAuths();
+			MyJfinalUtil.initAuths();
 			
-			return QJsonUtil.suc();
+			return MyJsonUtil.suc();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QJsonUtil.error("添加Url失败 !");
+			return MyJsonUtil.error("添加Url失败 !");
 		}
 	}
 	

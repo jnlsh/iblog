@@ -21,7 +21,7 @@ import com.tanlsh.util.core.file.PropertiesUtil;
 
 /**
  * 邮件工具类<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20141105
  * @history
  * 	0.0.2.20141105

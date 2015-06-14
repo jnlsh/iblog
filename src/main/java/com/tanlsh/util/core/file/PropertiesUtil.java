@@ -11,7 +11,7 @@ import com.tanlsh.util.core.data.StringUtil;
  * 2.读取配置文件<br>
  * 3.获取配置文件中的属性<br>
  * 4.获取配置文件中的属性,返回boolean值<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20141220
  * @history
  * 	0.0.2.20141220<br>

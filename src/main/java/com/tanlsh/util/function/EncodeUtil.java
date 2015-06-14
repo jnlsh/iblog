@@ -31,7 +31,7 @@ import sun.misc.BASE64Encoder;
  * 10.AES加密为base 64 code<br>
  * 11.AES解密<br>
  * 12.将base 64 code AES解密<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.9.20140610
  */
 public class EncodeUtil {

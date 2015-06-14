@@ -2,7 +2,7 @@ package com.tanlsh.util.plugin.json;
 
 /**
  * qjson util
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141216
  * @history
  * 	0.0.1.20141216<br>

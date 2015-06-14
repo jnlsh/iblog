@@ -12,7 +12,7 @@ import java.util.Date;
  * 3.当前时间毫秒<br>
  * 4.当前时间+-n天的date<br>
  * 5.当前时间是否在一个有效期内<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20150301
  * @history
  * 	0.0.2.20150301<br>

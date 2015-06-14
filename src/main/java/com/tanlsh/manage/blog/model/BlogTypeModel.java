@@ -14,7 +14,7 @@ import com.tanlsh.util.function.CacheUtil;
  * cdate		创建时间<br>
  * cuser_id		创建人id<br>
  * cuser_name	创建人姓名<br>
- * @author qiaowenbin
+ * @author 
  */
 @Table("t_blog_type")
 @SuppressWarnings("serial")

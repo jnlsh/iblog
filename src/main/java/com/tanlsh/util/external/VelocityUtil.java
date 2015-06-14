@@ -15,7 +15,7 @@ import org.apache.velocity.texen.util.FileUtil;
 /**
  * Velocity工具类<br>
  * 1.生成代码<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.4.20141209
  * @history
  * 	0.0.4.20141209<br>

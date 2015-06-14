@@ -9,7 +9,7 @@ import com.tanlsh.util.core.data.StringUtil;
 
 /**
  * tree
- * @author qiaowenbin
+ * @author 
  */
 public class MyTree {
 	private int id;

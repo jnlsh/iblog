@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * 10.获取创建时间<br>
  * 11.获取最后访问时间<br>
  * 12.判断是否新建<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.3.20140617
  */
 public class SessionUtil {

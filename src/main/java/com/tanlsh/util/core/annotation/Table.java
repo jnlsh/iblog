@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * QTable注解
- * @author qiaowenbin
+ * @author 
  */
 @Documented
 @Target(ElementType.TYPE)

@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 /**
  * 线程工具类<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141105
  * @history
  * 	0.0.1.20141105

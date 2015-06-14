@@ -23,7 +23,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 			}
 		</script>
 		<img id="theImg" src="img" onclick="javascript:reload();"/>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20140515
  */
 public class ResponseUtil {

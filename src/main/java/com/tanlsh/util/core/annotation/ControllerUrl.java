@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * QControllerUrl注解
- * @author qiaowenbin
+ * @author 
  */
 @Documented
 @Target(ElementType.TYPE)

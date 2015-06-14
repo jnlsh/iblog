@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 分页bean
- * @author qiaowenbin
+ * @author 
  * @version 0.0.3.20140825
  */
 public class MyPage {

@@ -6,7 +6,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * UcenterRoleRUserController
- * @author qiaowenbin
+ * @author 
  */
 public class UcenterRoleRUserController extends BaseController{
 	

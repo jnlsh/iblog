@@ -8,7 +8,7 @@ import net.lingala.zip4j.util.Zip4jConstants;
 
 /**
  * 压缩DTO
- * @author qiaowenbin
+ * @author 
  */
 public class MyZip {
 	private String zipFile;

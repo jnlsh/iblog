@@ -8,7 +8,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * 自定义拦截器，区别于jar中的QInterceptor
- * @author qiaowenbin
+ * @author 
  */
 public class MyInterceptor implements Interceptor{
 

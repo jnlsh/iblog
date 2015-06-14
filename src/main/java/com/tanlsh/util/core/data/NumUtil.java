@@ -2,7 +2,7 @@ package com.tanlsh.util.core.data;
 /**
  * 数字工具类<br>
  * 1.补齐位数并返回字符串<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20150301
  * @history
  * 	0.0.2.20150301<br>

@@ -12,7 +12,7 @@ import java.util.List;
  * 2.判断数组为空<br>
  * 3.判断数组非空<br>
  * 4.将文件数组转为文件list<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20150301
  * @history
  * 	0.0.2.20150301<br>

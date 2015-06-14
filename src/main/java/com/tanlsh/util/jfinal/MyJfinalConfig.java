@@ -11,7 +11,7 @@ import com.tanlsh.z.MyInterceptor;
 
 /**
  * jfinal config
- * @author qiaowenbin
+ * @author 
  * @version 0.0.4.20140909
  */
 public class MyJfinalConfig extends JFinalConfig{

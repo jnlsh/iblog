@@ -20,7 +20,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * Login Service
- * @author qiaowenbin
+ * @author 
  */
 public class LoginService {
 
@@ -92,7 +92,7 @@ public class LoginService {
 	}
 	private String genUserId(String username){
 		try {
-			return EncodeUtil.md5Encrypt("qiaowenbin" + username);
+			return EncodeUtil.md5Encrypt("" + username);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

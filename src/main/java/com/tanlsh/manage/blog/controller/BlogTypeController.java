@@ -10,7 +10,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * BlogTypeController
- * @author qiaowenbin
+ * @author 
  */
 @ControllerUrl("/blog/type")
 public class BlogTypeController extends BaseController{

@@ -2,7 +2,7 @@ package com.tanlsh.util.plugin.crud;
 
 /**
  * 列信息，包括是否唯一，是否可空等
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141009
  */
 public class ColumnInfo {

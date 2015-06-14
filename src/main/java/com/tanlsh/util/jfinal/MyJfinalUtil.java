@@ -32,7 +32,7 @@ import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 
 /**
  * jfinal util
- * @author qiaowenbin
+ * @author 
  * @version 0.0.6.20140830
  */
 public class MyJfinalUtil {

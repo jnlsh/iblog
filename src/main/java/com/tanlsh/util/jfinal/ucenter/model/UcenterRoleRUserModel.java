@@ -15,7 +15,7 @@ import com.tanlsh.util.core.data.StringUtil;
  * cdate	创建时间<br>
  * cuser_id	创建人id<br>
  * cuser_name	创建人姓名<br>
- * @author qiaowenbin
+ * @author 
  */
 @Table("t_ucenter_role_r_user")
 @SuppressWarnings("serial")

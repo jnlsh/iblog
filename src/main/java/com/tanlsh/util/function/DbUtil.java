@@ -32,7 +32,7 @@ import com.tanlsh.util.plugin.crud.MyPage;
  * 12.get cols info to map<br>
  * 13.get cols info to map list<br>
  * 14.mysql datatype to java datatype<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.6.20141111
  * @history
  * 	0.0.6.20141111<br>

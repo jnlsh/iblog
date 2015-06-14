@@ -24,7 +24,7 @@ import com.tanlsh.util.core.data.StringUtil;
  * 8.获取文件后缀<br>
  * 9.修改文件后缀<br>
  * 10.获取某文件夹下的所有文件的路径<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.8.20141229
  * @history
  * 	0.0.8.20141229<br>

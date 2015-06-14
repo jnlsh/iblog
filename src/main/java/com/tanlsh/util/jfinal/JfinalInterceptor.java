@@ -17,7 +17,7 @@ import com.tanlsh.util.jfinal.ucenter.model.UcenterUserModel;
 
 /**
  * 拦截器
- * @author qiaowenbin
+ * @author 
  * @version 0.0.6.20140909
  */
 public class JfinalInterceptor implements Interceptor{
@@ -160,7 +160,7 @@ public class JfinalInterceptor implements Interceptor{
 		}else{
 			try {
 				String userName = user.getStr("ucenter_user_name");
-				if(StringUtil.isIn(userName, "admin", "uikoo9")){
+				if(StringUtil.isIn(userName, "admin", "tanlsh")){
 					return true;
 				}
 				

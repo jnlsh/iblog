@@ -13,7 +13,7 @@ import net.sf.ehcache.Element;
  * 3.向默认ehcache中存入一个对象<br>
  * 4.从默认ehcache中读取一个对象<br>
  * 5.从默认ehcache中移除一个对象<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141109
  * @history
  * 	0.0.1.20141109

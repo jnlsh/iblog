@@ -26,7 +26,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * 基础controller，封装一些常用方法
- * @author qiaowenbin
+ * @author 
  * @version 0.0.4.20142208
  * @history
  * 	0.0.4.20142208<br>

@@ -2,7 +2,7 @@ package com.tanlsh.util.plugin.contants;
 
 /**
  * 常量model
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20140830
  */
 public class ContantsModel {

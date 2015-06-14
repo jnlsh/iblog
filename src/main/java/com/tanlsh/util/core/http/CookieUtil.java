@@ -13,7 +13,7 @@ import com.tanlsh.util.core.data.StringUtil;
  * 3.删除所有cookie<br>
  * 4.设置cookie，并设置有效期<br>
  * 5.获取一个cookie的值<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20141109
  * @history
  * 	0.0.2.20141109<br>

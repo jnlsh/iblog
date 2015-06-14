@@ -27,7 +27,7 @@
 		<!-- for search-->
 		<meta name="keywords" content="<#if key != ''>${key}<#else>${title}</#if>"/>
 		<meta name="description" content="<#if desc != ''>${desc}<#else>${title}</#if>"/>
-		<meta name="author" contect="qiaowenbin"/>
+		<meta name="author" contect=""/>
 		<meta name="robots" contect="all"/>
 		
 		<!-- title -->
@@ -72,16 +72,10 @@
 			<script type="text/javascript">qiao.login.init();</script>
 		</#if>
 		
-		<#if title == 'uikoo9.com' && !devMode>
+		<#if !devMode>
 			<!-- baidu tongji -->
 			<script>
-				var _hmt = _hmt || [];
-				(function() {
-					var hm = document.createElement("script");
-					hm.src = "//hm.baidu.com/hm.js?7117ec605df94953bcc641e344d24b95";
-					var s = document.getElementsByTagName("script")[0]; 
-					s.parentNode.insertBefore(hm, s);
-				})();
+			
 			</script>
 		</#if>
 		
@@ -150,15 +144,15 @@
 <#macro bsbody style='' class='' qmask=2 head=true foot=true>
 <body <#if style != ''>style="${style}"</#if> <#if class != ''>class="${class}"</#if>>
 	<#if qmask == 1>
-		<script type="text/javascript" src="http://uikoo9.qiniudn.com/@/js/qmask/qmask-1.0.min.js"></script>
+		<script type="text/javascript" src="${base}/WUI/qmask/qmask-1.0.min.js"></script>
 	</#if>
 	<#if qmask == 2>
-		<link rel="stylesheet" href="http://uikoo9.qiniudn.com/@/js/qmask/qmask-2.0.min.css">
-		<script type="text/javascript" src="http://uikoo9.qiniudn.com/@/js/qmask/qmask-2.0.min.js"></script>
+		<link rel="stylesheet" href="${base}/WUI/qmask/qmask-2.0.min.css">
+		<script type="text/javascript" src="${base}/qmask/qmask-2.0.min.js"></script>
 	</#if>
 	<#if qmask == 3>
-		<link rel="stylesheet" href="http://uikoo9.qiniudn.com/@/js/qmask/qmask-3.0.css">
-		<script type="text/javascript" src="http://uikoo9.qiniudn.com/@/js/qmask/qmask-3.0.js"></script>
+		<link rel="stylesheet" href="${base}/WUI/qmask/qmask-3.0.css">
+		<script type="text/javascript" src="${base}/WUI/qmask/qmask-3.0.js"></s/cript>
 		<script type="text/javascript">qmask.show();</script>
 	</#if>
 	<#if qmask != 0>
@@ -173,13 +167,13 @@
 		<div id="push"></div>
 	</div>
 	
-	<#if foot><@bsfoot/></#if>
+	<#if foot></ot/></#if>
 </body>
 </#macro>
 
 <#-- bsfoot -->
 <#macro bsfoot>
-    <div id="footer">
+/div id="footer">
 		<div class="container">
 			<p class="text-muted" style="margin:20px 0;">
 				<a target="_blank" href="http://uikoo9.com/">uikoo9.com</a>&nbsp;&nbsp;&nbsp;

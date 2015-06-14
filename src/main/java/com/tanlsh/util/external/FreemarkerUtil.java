@@ -5,7 +5,7 @@ import freemarker.ext.beans.BeansWrapper;
 /**
  * Freemarker工具类<br>
  * 1.获取静态类<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141210
  * @history
  * 	0.0.1.20141210<br>

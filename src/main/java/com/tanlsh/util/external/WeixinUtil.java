@@ -10,7 +10,7 @@ import com.tanlsh.util.function.EncodeUtil;
 /**
  * 微信工具类
  * 1.校验合法性<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.2015020601
  * @history
  * 	0.0.1.2015020601<br>

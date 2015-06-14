@@ -3,7 +3,7 @@ package com.tanlsh.util.plugin.json;
 
 /**
  * json model
- * @author qiaowenbin
+ * @author 
  * @version 0.0.5.20141216
  * @history
  * 	0.0.5.20141216<br>

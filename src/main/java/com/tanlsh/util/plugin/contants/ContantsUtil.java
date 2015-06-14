@@ -8,7 +8,7 @@ import com.tanlsh.util.core.file.PropertiesUtil;
 
 /**
  * 常量工具类
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20140909
  */
 public class ContantsUtil {

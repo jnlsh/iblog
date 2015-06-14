@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * 1.获取request中一些常用的信息<br>
  * 2.获取项目的绝对路径<br>
  * 3.判断是否盗链<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.4.20140617
  */
 public class RequestUtil {

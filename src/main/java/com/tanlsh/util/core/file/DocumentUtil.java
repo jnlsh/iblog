@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
  * 文档解析工具类<br>
  * 1.获取document<br>
  * 2.获取tagValue<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.2.20150301
  * @history
  * 	0.0.2.20150301<br>

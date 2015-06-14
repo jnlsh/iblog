@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * 19.将驼峰命名的字符串拆分<br>
  * 20.将表名转换为类名<br>
  * 21.将类名转换为表名<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.1.1.20150301
  * @history
  * 	0.1.1.20150301<br>

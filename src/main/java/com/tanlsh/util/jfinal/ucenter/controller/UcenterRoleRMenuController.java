@@ -7,7 +7,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * UcenterRoleRMenuController
- * @author qiaowenbin
+ * @author 
  */
 @ControllerUrl("/ucenter/role/r/menu")
 public class UcenterRoleRMenuController extends BaseController{

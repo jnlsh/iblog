@@ -12,7 +12,7 @@ import com.tanlsh.util.plugin.tree.MyTreeCheck;
 
 /**
  * UcenterRoleController
- * @author qiaowenbin
+ * @author 
  */
 public class UcenterRoleController extends BaseController{
 	

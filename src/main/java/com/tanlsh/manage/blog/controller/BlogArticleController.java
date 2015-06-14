@@ -8,7 +8,7 @@ import com.tanlsh.util.plugin.json.MyJsonUtil;
 
 /**
  * BlogArticleController
- * @author qiaowenbin
+ * @author 
  */
 @ControllerUrl("/blog/article")
 public class BlogArticleController extends BaseController{

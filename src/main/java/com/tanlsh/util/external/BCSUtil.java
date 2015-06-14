@@ -34,7 +34,7 @@ import com.tanlsh.util.core.file.PropertiesUtil;
  * 8.列出object<br>
  * 9.获取ObjectMetadata<br>
  * 10.设置获取ObjectMetadata<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141201
  * @history
  * 	0.0.1.20141201<br>

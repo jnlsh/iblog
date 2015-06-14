@@ -9,7 +9,7 @@ import com.tanlsh.util.core.file.PropertiesUtil;
 /**
  * 七牛云工具类<br>
  * 1.上传文件<br>
- * @author qiaowenbin
+ * @author 
  * @version 0.0.1.20141209
  * @history
  * 	0.0.1.20141209<br>
